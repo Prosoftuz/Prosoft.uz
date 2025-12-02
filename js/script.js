@@ -54,23 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  /* Simple filter logic (client-side) */
-  const applyBtn = document.getElementById('applyFilters');
-  if(applyBtn){
-    applyBtn.addEventListener('click', () => {
-      const maxPrice = Number(document.getElementById('priceRange').value || 99999999);
-      const cat = document.getElementById('categoryFilter').value;
-      document.querySelectorAll('.product').forEach(p => {
-        const price = Number(p.dataset.price || 0);
-        const category = p.dataset.category || 'all';
-        const matchPrice = price <= maxPrice;
-        const matchCat = (cat === 'all') || (category === cat);
-        if(matchPrice && matchCat) p.style.display = '';
-        else p.style.display = 'none';
-      });
-    });
-  }
-
   /* Tag & sort filters for hits */
   const tagSelect = document.getElementById('tagSelect');
   if(tagSelect){
@@ -135,18 +118,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
-// форматирование больших чисел: 99999999 → "99 999 999"
-  function formatSum(n) {
-    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-  }
-  // обновление при движении ползунка
-  if (priceRange && priceValue) {
-    priceRange.addEventListener("input", () => {
-      priceValue.textContent = formatSum(priceRange.value) + " сум";
-    });
-    // начальное значение
-    priceValue.textContent = formatSum(priceRange.value) + " сум";
-  }
 
   // ==== SIMPLE MODAL ====
 
@@ -257,4 +228,11 @@ document.getElementById("modalClose").addEventListener("click", closeModal);
 document.addEventListener("click", function (e) {
   const modal = document.getElementById("productModal");
   if (e.target === modal) closeModal();
+});
+
+const sidebar = document.getElementById('sidebar'); // сам каталог
+const toggleBtn = document.getElementById('sidebarToggle'); // кнопка в header
+
+toggleBtn.addEventListener('click', () => {
+  sidebar.classList.toggle('active');
 });
