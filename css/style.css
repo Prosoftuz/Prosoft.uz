@@ -694,16 +694,13 @@ body.modal-open {
   overflow: hidden;
 }
 
-
-
-
-
-/* =============================
-   📱 MOBILE — HEADER (FULL ADAPTIVE)
-   ============================= */
+/* ==================================================
+   📱 MOBILE — FULL ADAPTIVE (HEADER + SIDEBAR +
+   PRODUCTS + SECTIONS + SERVICES)
+   ================================================== */
 @media (max-width: 480px) {
 
-  /* сам хедер */
+  /* ---------- HEADER ---------- */
   .header {
     position: sticky !important;
     top: 0 !important;
@@ -715,142 +712,6 @@ body.modal-open {
     align-items: center;
     gap: 12px;
   }
-
-  /* скрываем десктоп меню */
-  .header nav {
-    display: none !important;
-  }
-
-  /* логотип */
-  .logo {
-    font-size: 18px;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-  }
-
-  /* левая часть: бургер + логотип */
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  /* бургер-кнопка */
-  .burger {
-    border: 0;
-    background: rgba(0,0,0,0.06);
-    padding: 8px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .burger svg {
-    width: 22px;
-    height: 22px;
-  }
-
-  /* блок иконок справа */
-  .icons {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
-
-  .icon-wrap {
-    width: 38px;
-    height: 38px;
-    background: rgba(0,0,0,0.06);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .icon-wrap svg {
-    width: 18px;
-    height: 18px;
-  }
-}
-
-/* =============================
-   📱 MOBILE — SIDEBAR ADAPTIVE
-   ============================= */
-@media (max-width: 480px) {
-
-  /* контейнер под мобильный перестраиваем в колонку */
-  .container {
-    flex-direction: column;
-    padding: 14px;
-    gap: 18px;
-  }
-
-  /* sidebar — занимает весь экран */
-  .sidebar {
-    width: 82%;
-    max-width: 300px;
-    height: 100vh;
-    padding: 20px;
-    top: 0;
-    left: -100%;  /* скрыт полностью */
-    opacity: 0;
-    position: fixed;
-    border-radius: 0 12px 12px 0;
-    box-shadow: 0 0 40px rgba(0,0,0,0.28);
-    transition: left .35s ease, opacity .25s ease;
-    z-index: 999;
-    background: #fff; /* без прозрачности */
-  }
-
-  /* активный — плавно выезжает */
-  .sidebar.active {
-    left: 0;
-    opacity: 1;
-  }
-
-  /* текст и ссылки — больше отступы */
-  .sidebar a {
-    padding: 12px;
-    font-size: 16px;
-  }
-
-  /* кнопки фильтра */
-  #applyFilters {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-  }
-
-  /* контент поднимается, занимает всю ширину */
-  .content {
-    width: 100%;
-    padding: 0;
-  }
-}
-
-/* ==================================================
-   📱 MOBILE — FULL ADAPTIVE (HEADER + SIDEBAR +
-   PRODUCTS + SECTIONS + SERVICES)
-   ================================================== */
-@media (max-width: 480px) {
-
-  /* ---------- HEADER ---------- */
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 200;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(8px); /* более ровный эффект */
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-  padding: 12px 20px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-
-  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-}
 
 /* ---- ЛОГО ---- */
 .logo {
