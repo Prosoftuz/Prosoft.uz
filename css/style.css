@@ -694,47 +694,79 @@ body.modal-open {
   overflow: hidden;
 }
 
+
+
+
+
 /* =============================
-   📱 MOBILE — HEADER ADAPTIVE
+   📱 MOBILE — HEADER (FULL ADAPTIVE)
    ============================= */
 @media (max-width: 480px) {
 
-  /* весь header уменьшаем */
+  /* сам хедер */
   .header {
     padding: 10px 14px;
     height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     gap: 12px;
   }
 
-  /* скрываем текстовое меню */
+  /* скрываем десктоп меню */
   .header nav {
     display: none !important;
   }
 
-  /* логотип меньше */
+  /* логотип */
   .logo {
     font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
   }
 
-  /* иконки справа */
-  .icons {
-    gap: 10px;
+  /* левая часть: бургер + логотип */
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
 
-  .icons .icon-wrap {
-    width: 38px;
-    height: 38px;
+  /* бургер-кнопка */
+  .burger {
+    border: 0;
+    background: rgba(0,0,0,0.06);
+    padding: 8px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-
-  .icons svg {
-    width: 18px;
-    height: 18px;
-  }
-
-  /* кнопка бургера немного больше */
   .burger svg {
     width: 22px;
     height: 22px;
+  }
+
+  /* блок иконок справа */
+  .icons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .icon-wrap {
+    width: 38px;
+    height: 38px;
+    background: rgba(0,0,0,0.06);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon-wrap svg {
+    width: 18px;
+    height: 18px;
   }
 }
 
@@ -790,5 +822,243 @@ body.modal-open {
   .content {
     width: 100%;
     padding: 0;
+  }
+}
+
+/* =============================
+   📱 MOBILE — PRODUCTS ADAPTIVE
+   ============================= */
+@media (max-width: 480px) {
+
+  /* сетка: 2 маленькие колонки */
+  .products {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    padding: 10px;
+  }
+
+  /* сама карточка меньше */
+  .card {
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+
+  /* убираем hover наклоны для мобильного */
+  .product:hover .card {
+    transform: none !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06) !important;
+  }
+
+  /* картинка */
+  .card-media img {
+    height: 120px; /* меньше, чтобы 2 в ряд поместилось */
+  }
+
+  /* текст */
+  .card-body h3 {
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  .card-body p {
+    font-size: 12px;
+  }
+
+  /* кнопка */
+  .btn {
+    padding: 10px;
+    font-size: 13px;
+    width: 100%; /* на телефоне шире */
+    border-radius: 8px;
+  }
+
+  /* плашки (sale, hit, etc) */
+  .label {
+    font-size: 10px;
+    padding: 4px 6px;
+    border-radius: 4px;
+  }
+
+  /* угловая лента (ribbon) */
+  .ribbon {
+    width: 100px;
+    height: 28px;
+    font-size: 10px;
+  }
+}
+
+/* =============================
+   📱 MOBILE — SECTIONS & CONTENT
+   ============================= */
+@media (max-width: 480px) {
+
+  /* контейнер */
+  .container {
+    flex-direction: column;
+    padding: 12px !important;
+    gap: 16px;
+  }
+
+  /* секции (новинки, популярное…) */
+  .section {
+    padding: 14px 12px;
+    border-radius: 10px;
+  }
+
+  /* заголовки */
+  .section-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  /* фон секции */
+  .section .bg-layer {
+    opacity: 0.04;
+  }
+
+  /* сетка товаров */
+  .products {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 14px;
+    padding: 6px;
+  }
+
+  /* карточка */
+  .card {
+    border-radius: 12px;
+  }
+
+  .card-media img {
+    height: 130px;
+  }
+
+  /* текст карточки */
+  .card-body h3 {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  .card-body p {
+    font-size: 12px;
+  }
+
+  /* кнопка "купить" */
+  .btn {
+    padding: 8px 14px;
+    font-size: 14px;
+    border-radius: 8px;
+  }
+
+  /* бейджики */
+  .label {
+    font-size: 11px;
+    padding: 5px 8px;
+  }
+
+  .tag {
+    font-size: 11px;
+    padding: 5px 8px;
+  }
+}
+
+/* =============================
+   📱 MOBILE — SIDEBAR (CATALOG)
+   ============================= */
+@media (max-width: 480px) {
+
+  /* сам сайдбар */
+  .sidebar {
+    width: 80%;
+    max-width: 280px;
+    left: -100%;
+    padding: 14px 16px;
+    border-radius: 0 12px 12px 0;
+  }
+
+  .sidebar.active {
+    left: 0; /* полностью видно */
+  }
+
+  /* заголовок */
+  .sidebar h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  /* элементы каталога */
+  .sidebar a {
+    font-size: 14px;
+    padding: 8px;
+    border-radius: 8px;
+  }
+
+  .sidebar a i {
+    width: 16px;
+    font-size: 15px;
+  }
+
+  /* фильтры */
+  .filter label {
+    font-size: 14px;
+  }
+
+  #priceRange {
+    margin-top: 4px;
+  }
+
+  #priceValue {
+    font-size: 14px;
+  }
+
+  select#categoryFilter {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 8px;
+  }
+
+  #applyFilters {
+    padding: 10px 14px;
+    font-size: 14px;
+    border-radius: 8px;
+  }
+}
+
+/* =============================
+   📱 MOBILE — SERVICES (Prosoft)
+   ============================= */
+@media (max-width: 480px) {
+
+  /* сетка сервисов */
+  .services-grid {
+    grid-template-columns: 1fr 1fr; /* 2 в ряд */
+    gap: 12px;
+    padding: 4px;
+  }
+
+  /* карточка */
+  .service {
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+  }
+
+  /* иконки */
+  .service svg {
+    width: 34px;
+    height: 34px;
+    margin-bottom: 6px;
+  }
+
+  /* название */
+  .service div:nth-child(2) {
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 4px;
+  }
+
+  /* описание */
+  .service div:nth-child(3) {
+    font-size: 12px;
+    color: var(--muted);
   }
 }
