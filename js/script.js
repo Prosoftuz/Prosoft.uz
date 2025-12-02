@@ -45,15 +45,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  /* Sidebar toggle for mobile */
-  const sidebar = document.getElementById('sidebar');
-  const sidebarToggle = document.getElementById('sidebarToggle');
-  if(sidebarToggle && sidebar){
-    sidebarToggle.addEventListener('click', () => {
-      sidebar.classList.toggle('collapsed');
-    });
-  }
-
   /* Tag & sort filters for hits */
   const tagSelect = document.getElementById('tagSelect');
   if(tagSelect){
@@ -108,16 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if(cartBtn) { cartBtn.style.boxShadow = '0 8px 20px rgba(10,127,63,0.12)'; setTimeout(()=> cartBtn.style.boxShadow = '', 500); }
     });
   });
-
-  /* Accessibility: close sidebar on outside click (mobile) */
-  document.addEventListener('click', (e)=>{
-    if(window.innerWidth <= 1024){
-      if(sidebar && sidebarToggle && !sidebar.contains(e.target) && !sidebarToggle.contains(e.target)){
-        sidebar.classList.add('collapsed');
-      }
-    }
   });
-});
 
   // ==== SIMPLE MODAL ====
 
@@ -236,3 +218,4 @@ const toggleBtn = document.getElementById('sidebarToggle'); // кнопка в h
 toggleBtn.addEventListener('click', () => {
   sidebar.classList.toggle('active');
 });
+

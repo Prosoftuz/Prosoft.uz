@@ -481,21 +481,6 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
 /* small utility */
 .center { text-align:center }
 
-/* ========== RESPONSIVE ========== */
-@media (max-width:1024px) {
-  .container{ padding:16px; gap:12px; flex-direction:column; }
-  .sidebar{ width:100%; position:relative; top:0; }
-  .burger{ display:flex; }
-  .header nav{ display:none; }
-  .bottom-bar{ display:flex; }
-  footer { padding:18px; gap:16px; }
-  .card-media img { height:200px; object-fit:cover; }
-}
-
-@media (max-width:420px) {
-  .card-media img { height:160px; }
-  footer > div { min-width:45%; }
-}
 /* ===== САМА КАРТОЧКА ===== */
 .product {
   position: relative;
@@ -579,81 +564,6 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* 6 в один ряд */
   gap: 20px;   /* расстояние между карточками */
   padding: 20px;
-}
-@media (max-width: 768px) {
-  .products {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  }
-}
-
-@media (max-width: 480px) {
-  .products {
-    grid-template-columns: repeat(2, 1fr); /* 2 карточки на телефоне */
-  }
-}
-
-/* ===========================
-   MOBILE FIXES
-   =========================== */
-@media (max-width: 768px) {
-
-  /* Контейнер — выстраиваем в колонку */
-  .container {
-    flex-direction: column;
-    padding: 14px;
-    gap: 14px;
-  }
-
-  /* Сайдбар — на весь экран */
-  .sidebar {
-    width: 88%;
-    left: -100%;
-    top: 80px;
-    border-radius: 14px;
-  }
-
-  .sidebar.active {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  /* Секции — убираем огромные отступы */
-  .section {
-    padding: 14px;
-  }
-
-  .section-title {
-    font-size: 18px;
-  }
-
-  /* Карточки товаров */
-  .products {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  .product-card {
-    padding: 8px;
-    border-radius: 10px;
-  }
-
-  /* Кнопка каталога */
-  .burger {
-    padding: 8px 10px;
-    width: 42px;
-    height: 42px;
-  }
-
-  /* Футер — в колонку и без сдвигов */
-  footer {
-    flex-direction: column;
-    padding: 18px;
-    gap: 18px;
-  }
-  footer > div {
-    width: 100%;
-  }
 }
 
 /* ====== MODAL - ЧИСТЫЙ ГОТОВЫЙ ВАРИАНТ ====== */
@@ -784,3 +694,101 @@ body.modal-open {
   overflow: hidden;
 }
 
+/* =============================
+   📱 MOBILE — HEADER ADAPTIVE
+   ============================= */
+@media (max-width: 480px) {
+
+  /* весь header уменьшаем */
+  .header {
+    padding: 10px 14px;
+    height: auto;
+    gap: 12px;
+  }
+
+  /* скрываем текстовое меню */
+  .header nav {
+    display: none !important;
+  }
+
+  /* логотип меньше */
+  .logo {
+    font-size: 18px;
+  }
+
+  /* иконки справа */
+  .icons {
+    gap: 10px;
+  }
+
+  .icons .icon-wrap {
+    width: 38px;
+    height: 38px;
+  }
+
+  .icons svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* кнопка бургера немного больше */
+  .burger svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* =============================
+   📱 MOBILE — SIDEBAR ADAPTIVE
+   ============================= */
+@media (max-width: 480px) {
+
+  /* контейнер под мобильный перестраиваем в колонку */
+  .container {
+    flex-direction: column;
+    padding: 14px;
+    gap: 18px;
+  }
+
+  /* sidebar — занимает весь экран */
+  .sidebar {
+    width: 82%;
+    max-width: 300px;
+    height: 100vh;
+    padding: 20px;
+    top: 0;
+    left: -100%;  /* скрыт полностью */
+    opacity: 0;
+    position: fixed;
+    border-radius: 0 12px 12px 0;
+    box-shadow: 0 0 40px rgba(0,0,0,0.28);
+    transition: left .35s ease, opacity .25s ease;
+    z-index: 999;
+    background: #fff; /* без прозрачности */
+  }
+
+  /* активный — плавно выезжает */
+  .sidebar.active {
+    left: 0;
+    opacity: 1;
+  }
+
+  /* текст и ссылки — больше отступы */
+  .sidebar a {
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  /* кнопки фильтра */
+  #applyFilters {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  /* контент поднимается, занимает всю ширину */
+  .content {
+    width: 100%;
+    padding: 0;
+  }
+}
