@@ -591,24 +591,68 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
     grid-template-columns: repeat(2, 1fr); /* 2 карточки на телефоне */
   }
 }
-/* ===== АДАПТИВ ДЛЯ ТЕЛЕФОНА ===== */
-@media (max-width: 768px) {
-  .product {
-    width: 46%;         /* 2 карточки в ряд */
-  }
-  .card-body h3 {
-    font-size: 14px;
-  }
-  .btn {
-    padding: 8px;
-    font-size: 14px;
-  }
-}
 
-/* очень маленькие экраны (iPhone SE, Android Mini) */
-@media (max-width: 480px) {
-  .product {
-    width: 100%;        /* 1 карточка в ряд */
+/* ===========================
+   MOBILE FIXES
+   =========================== */
+@media (max-width: 768px) {
+
+  /* Контейнер — выстраиваем в колонку */
+  .container {
+    flex-direction: column;
+    padding: 14px;
+    gap: 14px;
+  }
+
+  /* Сайдбар — на весь экран */
+  .sidebar {
+    width: 88%;
+    left: -100%;
+    top: 80px;
+    border-radius: 14px;
+  }
+
+  .sidebar.active {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Секции — убираем огромные отступы */
+  .section {
+    padding: 14px;
+  }
+
+  .section-title {
+    font-size: 18px;
+  }
+
+  /* Карточки товаров */
+  .products {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .product-card {
+    padding: 8px;
+    border-radius: 10px;
+  }
+
+  /* Кнопка каталога */
+  .burger {
+    padding: 8px 10px;
+    width: 42px;
+    height: 42px;
+  }
+
+  /* Футер — в колонку и без сдвигов */
+  footer {
+    flex-direction: column;
+    padding: 18px;
+    gap: 18px;
+  }
+  footer > div {
+    width: 100%;
   }
 }
 
@@ -739,3 +783,4 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
 body.modal-open {
   overflow: hidden;
 }
+
