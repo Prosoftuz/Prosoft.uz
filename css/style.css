@@ -704,15 +704,16 @@ body.modal-open {
 @media (max-width: 480px) {
 
   /* сам хедер */
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 9999;
-  background: rgba(255,255,255,0.92); backdrop-filter: blur(6px);
-  display:flex; align-items:center; justify-content:space-between; gap:16px;
-  padding:12px 20px; border-bottom:1px solid rgba(0,0,0,0.06);
+  .header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9999 !important;
+    padding: 10px 14px;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
   }
 
   /* скрываем десктоп меню */
