@@ -832,63 +832,107 @@ body.modal-open {
 @media (max-width: 480px) {
 
   /* ---------- HEADER ---------- */
-  .header {
-    padding: 10px 14px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-  }
+/* =============================
+   HEADER — красивый фирменный стиль Prosoft
+   ============================= */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(8px); /* более ровный эффект */
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding: 12px 20px;
 
-  .header nav {
-    display: none !important;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
 
-  .logo {
-    font-size: 18px;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-  }
-
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .burger {
-    border: 0;
-    background: var(--accent);
-    padding: 8px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(10,127,63,0.25);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
 }
+
+/* ---- ЛОГО ---- */
+.logo {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* ---- BURGER ---- */
+.burger {
+  background: rgba(10,127,63,0.08); /* зелёный намёк */
+  border: 1px solid rgba(10,127,63,0.15);
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+
+  transition: .18s ease;
+}
+
+.burger:hover {
+  background: rgba(10,127,63,0.15);
+  transform: scale(1.05);
+}
+
 .burger svg {
-    fill: #fff !important;
+  width: 20px;
+  height: 20px;
+  fill: var(--accent-dark);
 }
 
-  .icons {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
 
-  .icon-wrap {
-    width: 38px;
-    height: 38px;
-    background: rgba(0,0,0,0.06);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+/* ---- ICON BUTTONS (избранное / корзина / связь) ---- */
+.icon-wrap {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  .icon-wrap svg {
-    width: 18px;
-    height: 18px;
-  }
+  border-radius: 12px;
+  background: rgba(10,127,63,0.06);
+  border: 1px solid rgba(10,127,63,0.12);
 
+  transition: .18s ease;
+  cursor: pointer;
+}
 
+.icon-wrap svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--accent);
+  transition: .18s ease;
+}
+
+.icon-wrap:hover {
+  background: rgba(10,127,63,0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 10px rgba(10,127,63,0.15);
+}
+
+.icon-wrap:hover svg {
+  fill: var(--accent-dark);
+  transform: scale(1.12);
+}
+
+/* ---- NAV LINKS ---- */
+.header nav a {
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: #333;
+  font-weight: 500;
+
+  transition: .18s ease;
+}
+
+.header nav a:hover {
+  color: var(--accent-dark);
+  background: rgba(10,127,63,0.06);
+  transform: translateY(-2px);
+}
 
   /* ---------- SIDEBAR ---------- */
   .sidebar {
