@@ -219,3 +219,9 @@ toggleBtn.addEventListener('click', () => {
   sidebar.classList.toggle('active');
 });
 
+const closeSidebar = document.getElementById('closeSidebar');
+
+closeSidebar.addEventListener('click', () => {
+  sidebar.classList.remove('active');
+});
+
