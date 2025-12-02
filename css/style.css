@@ -1,0 +1,442 @@
+/* ========== THEME ========== */
+:root{
+  --accent:#0a7f3f;
+  --accent-dark:#0c9950;
+  --muted:#555;
+  --bg-from:#eefaf1;
+  --bg-to:#ffffff;
+  --glass: rgba(255,255,255,0.86);
+  --shadow: 0 6px 20px rgba(10,10,10,0.03);
+  --glow: rgba(10,127,63,0.08);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,Arial, Helvetica, sans-serif;
+  background: linear-gradient(120deg,var(--bg-from),var(--bg-to));
+  background-size: 300% 300%;
+  animation: gradientFlow 16s ease infinite;
+  color:#222;
+  overflow-x:hidden;
+  scroll-behavior: smooth;
+}
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* overlay glow & floating icons container */
+.body-glow { position: fixed; inset:0; pointer-events:none; z-index:-2;
+  background: radial-gradient(600px 300px at 10% 10%, rgba(10,127,63,0.04), transparent 7%),
+              radial-gradient(500px 240px at 90% 90%, rgba(0,150,90,0.03), transparent 9%); }
+.floating-icons { position: fixed; inset:0; pointer-events:none; z-index:-1; }
+
+/* particles/lines */
+.background-particles { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index:-1; }
+.particle { position:absolute; height:2px; background: linear-gradient(90deg, rgba(10,127,63,0.14), rgba(10,127,63,0.03)); filter: blur(.6px); animation: floatLine 14s linear infinite; }
+@keyframes floatLine { 0%{transform:translateY(115vh) rotate(0deg) translateX(0); opacity:0} 10%{opacity:1} 90%{opacity:1} 100%{transform:translateY(-25vh) rotate(180deg) translateX(0); opacity:0} }
+
+/* ========== HEADER ========== */
+.header {
+  position:sticky; top:0; z-index:200;
+  background: rgba(255,255,255,0.92); backdrop-filter: blur(6px);
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:12px 20px; border-bottom:1px solid rgba(0,0,0,0.06);
+}
+.brand { display:flex; align-items:center; gap:12px; }
+.logo { color:var(--accent); font-weight:800; font-size:20px; letter-spacing:0.3px; }
+.header nav { display:flex; gap:12px; align-items:center; }
+.header nav a { color:#333; text-decoration:none; padding:8px 10px; border-radius:8px; transition:all .18s; }
+.header nav a:hover { color:var(--accent-dark); background:var(--glow); transform:translateY(-2px); }
+.header .icons { display:flex; gap:8px; align-items:center; }
+.icon-wrap { width:44px; height:44px; display:grid; place-items:center; border-radius:10px; transition:all .18s; cursor:pointer; }
+.icon-wrap svg { width:18px; height:18px; fill:var(--accent); transition:transform .18s, fill .18s; }
+.icon-wrap:hover { transform:translateY(-4px); background: rgba(10,127,63,0.06); }
+.icon-wrap:hover svg { transform:scale(1.15); fill:var(--accent-dark); }
+
+/* mobile menu button (for toggling sidebar) */
+.burger { display:none; width:44px; height:44px; border-radius:10px; align-items:center; justify-content:center; cursor:pointer; background:transparent; border:1px solid transparent; transition:.18s; }
+.burger:hover { background: rgba(0,0,0,0.03); transform:translateY(-2px); }
+
+/* ========== LAYOUT ========== */
+.container { display:flex; gap:24px; padding:28px; align-items:flex-start; min-height:calc(100vh - 160px); }
+.sidebar {
+  width:260px; background:var(--glass); border-radius:12px; padding:18px; box-shadow:var(--shadow);
+  position:sticky; top:96px; height:fit-content; transition:transform .28s ease, opacity .18s;
+}
+.sidebar h4 { margin:0 0 12px; color:var(--accent); font-size:16px; }
+.sidebar a { display:flex; gap:10px; align-items:center; margin:8px 0; color:#333; text-decoration:none; padding:8px; border-radius:8px; transition:.18s; }
+.sidebar a:hover { background:rgba(0,0,0,0.03); transform:translateX(6px); color:var(--accent-dark); }
+
+/* collapsible sidebar hidden state */
+.sidebar.collapsed { transform:translateX(-110%); opacity:0; position:fixed; left:12px; top:96px; z-index:220; }
+
+/* content area */
+.content { flex:1; display:flex; flex-direction:column; gap:40px; }
+
+/* ========== SECTIONS ========== */
+.section { position:relative; background:rgba(255,255,255,0.86); border-radius:12px; padding:18px; box-shadow:var(--shadow); overflow:visible; }
+.section-title { font-size:20px; color:var(--accent); margin:0 0 12px; }
+
+/* bg layer parallax */
+.section .bg-layer { position:absolute; inset:0; z-index:0; opacity:.06; background-position:center; background-size:cover; pointer-events:none; transform:translateY(0); transition:transform .6s ease; }
+
+/* ========== PRODUCTS & SLIDER ========== */
+.slider { display:flex; gap:16px; overflow-x:auto; padding:6px 4px; }
+.slider::-webkit-scrollbar{ display:none; }
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* 6 в один ряд */
+  gap: 20px;   /* расстояние между карточками */
+  padding: 20px;
+}
+
+.product { position:relative; perspective:1000px; transform:translateY(50px); opacity:0; transition:transform .6s cubic-bezier(.2,.9,.3,1), opacity .6s ease, box-shadow .25s; z-index:1; }
+.product.show { transform:translateY(0); opacity:1; }
+.card { background:#fff; border-radius:10px; overflow:hidden; border:1px solid rgba(0,0,0,0.06); box-shadow:0 6px 18px rgba(10,10,10,0.04); transform:translateZ(0); transition:transform .28s ease, box-shadow .28s; will-change:transform; }
+.product:hover .card { transform:translateY(-6px) rotateX(3deg) rotateY(4deg); box-shadow:0 14px 30px rgba(10,10,10,0.12); }
+.card-media img { width:100%; height:160px; object-fit:cover; transition:transform .35s ease, filter .35s ease; display:block; }
+.product:hover .card-media img { transform:scale(1.06); filter:brightness(1.04); }
+.card-body { padding:12px; text-align:center; }
+.card-body h3 { margin:8px 0 6px; color:var(--accent); font-size:16px; }
+.card-body p { margin:0 0 10px; color:var(--muted); font-size:14px; }
+.btn { display:inline-block; padding:10px 16px; border-radius:8px; background:var(--accent); color:#fff; font-weight:700; border:0; cursor:pointer; box-shadow:0 6px 18px rgba(10,127,63,0.12); opacity:0; transform:translateY(12px); transition:all .22s; }
+.product.show .btn { opacity:1; transform:translateY(0); }
+.btn:hover { transform:scale(1.05); background:var(--accent-dark); }
+
+/* tags on card */
+.tag { position:absolute; bottom:10px; right:10px; background:rgba(0,0,0,0.06); padding:6px 8px; border-radius:8px; font-size:12px; color:#222; font-weight:700; }
+
+/* label ribbons */
+.label { position:absolute; top:12px; left:12px; padding:6px 10px; color:#fff; font-weight:700; font-size:12px; border-radius:6px; transform:translateY(-6px) scale(.96); opacity:0; transition:transform .28s, opacity .28s; }
+.product.show .label { transform:translateY(0) scale(1); opacity:1; }
+.label.novelty{ background:var(--accent) } .label.hit{ background:#ff8c00 } .label.sale{ background:#ff3b3b }
+
+/* ribbon small corner */
+.ribbon { position:absolute; right:-36px; top:12px; width:120px; height:32px; transform:rotate(45deg); background:#ff3b3b; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12px; box-shadow:0 6px 12px rgba(0,0,0,0.08) }
+
+/* glow on hover edges */
+.card::after { content:''; position:absolute; inset:0; border-radius:10px; pointer-events:none; box-shadow:0 0 0 rgba(0,0,0,0); transition:box-shadow .28s; }
+.product:hover .card::after { box-shadow:0 12px 40px rgba(10,127,63,0.06); }
+
+/* ========== SERVICES (icons) ========== */
+.services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:16px; }
+.service { background:#fff; border-radius:12px; padding:14px; text-align:center; box-shadow:var(--shadow); transition:transform .18s, box-shadow .18s; }
+.service:hover { transform:translateY(-6px); box-shadow:0 18px 40px rgba(10,10,10,0.08); }
+.service svg { width:40px; height:40px; fill:var(--accent); margin-bottom:8px; }
+
+/* ========== FILTERS BAR ========== */
+.filters { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom:8px; }
+.filter { background:transparent; border:1px solid rgba(0,0,0,0.06); padding:8px 10px; border-radius:8px; display:flex; gap:8px; align-items:center; }
+.filter select, .filter input { border:0; outline:none; background:transparent; }
+
+/* ========== HITS SLIDER (autoplay optional) ========== */
+.hits { display:flex; gap:12px; overflow-x:auto; padding-bottom:6px; }
+
+/* ========== MOBILE BOTTOM BAR ========== */
+.bottom-bar { display:none; position:fixed; left:0; right:0; bottom:12px; margin:0 auto; max-width:700px; background:#fff; border-radius:12px; padding:8px; box-shadow:0 10px 30px rgba(0,0,0,0.12); z-index:300; justify-content:space-around; }
+.bottom-bar a { display:flex; flex-direction:column; align-items:center; gap:4px; color:#333; text-decoration:none; font-size:12px; padding:6px 8px; border-radius:8px; transition:.18s; }
+.bottom-bar a:hover { transform:translateY(-4px); color:var(--accent-dark); }
+
+/* ========== FOOTER (fixed issues) ========== */
+footer {
+  display:flex;
+  gap:28px;
+  align-items:flex-start;
+  flex-wrap:wrap;
+  padding:28px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(245,245,245,0.95));
+  border-top:1px solid rgba(0,0,0,0.04);
+  color:#333;
+}
+footer > div { min-width:160px; display:flex; flex-direction:column; gap:8px; }
+footer h4 { margin:0 0 6px; font-size:16px; color:var(--accent); }
+footer a { color:#333; text-decoration:none; font-size:14px; }
+footer a:hover { color:var(--accent-dark); text-decoration:underline; }
+
+/* small utility */
+.center { text-align:center }
+
+/* ========== RESPONSIVE ========== */
+@media (max-width:1024px) {
+  .container{ padding:16px; gap:12px; flex-direction:column; }
+  .sidebar{ width:100%; position:relative; top:0; }
+  .burger{ display:flex; }
+  .header nav{ display:none; }
+  .bottom-bar{ display:flex; }
+  footer { padding:18px; gap:16px; }
+  .card-media img { height:200px; object-fit:cover; }
+}
+
+@media (max-width:420px) {
+  .card-media img { height:160px; }
+  footer > div { min-width:45%; }
+}
+/* ===== САМА КАРТОЧКА ===== */
+.product {
+  position: relative;
+  width: 250px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 14px;
+  background: #fff;
+  overflow: hidden;
+  transition: 0.25s ease;
+}
+
+/* hover эффект — живой сайт */
+.product:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+/* ===== ПРОДСМЕСТИ ===== */
+.card-media img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;  /* НЕ растягивает картинку */
+  display: block;
+}
+
+.card-body {
+  padding: 12px;
+}
+
+.card-body h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.card-body p {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* ===== КНОПКА Купить ===== */
+.btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 0;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.3s ease;
+}
+
+.btn:hover {
+  background: #07773c;
+}
+
+/* ===== ЛЕЙБЛЫ Новинка / Хит / Скидка ===== */
+.label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 4px 10px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 6px;
+}
+
+.label.novelty { background: #067ec0; }
+.label.hit     { background: #db7a00; }
+.label.sale    { background: #ff3b3b; }
+
+/* ===== ТЕГ снизу (Графика, CPU, Периферия) ===== */
+.tag {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  padding: 6px 12px;
+}
+/* Плавный скролл карточек */
+.slider {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;      /* плавное движение */
+  padding-bottom: 20px;
+}
+
+.slider::-webkit-scrollbar {
+  height: 6px;
+}
+
+.slider::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
+  border-radius: 4px;
+}
+/* ===== GRID-КАРТОЧКИ (6 в ряд) ===== */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* 6 в один ряд */
+  gap: 20px;   /* расстояние между карточками */
+  padding: 20px;
+}
+@media (max-width: 768px) {
+  .products {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .products {
+    grid-template-columns: repeat(2, 1fr); /* 2 карточки на телефоне */
+  }
+}
+/* ===== АДАПТИВ ДЛЯ ТЕЛЕФОНА ===== */
+@media (max-width: 768px) {
+  .product {
+    width: 46%;         /* 2 карточки в ряд */
+  }
+  .card-body h3 {
+    font-size: 14px;
+  }
+  .btn {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+
+/* очень маленькие экраны (iPhone SE, Android Mini) */
+@media (max-width: 480px) {
+  .product {
+    width: 100%;        /* 1 карточка в ряд */
+  }
+}
+
+/* ====== MODAL - ЧИСТЫЙ ГОТОВЫЙ ВАРИАНТ ====== */
+.modal {
+  position: fixed;
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  padding: 20px;
+}
+
+.modal.active { display: flex; }
+
+.modal-content {
+  position: relative;
+  width: 95%;
+  max-width: 480px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  animation: modalFade .25s ease;
+}
+
+@keyframes modalFade {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.modal-content img {
+  width: 100%;
+  max-height: 240px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+#modalTitle {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+#modalPrice {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: #0a7f42;
+}
+
+.modal-desc {
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+/* ---- ЛИНИЯ ---- */
+.modal-divider {
+  height: 1px;
+  background: #ddd;
+  margin: 12px 0;
+}
+
+/* ---- СТАТИЧНАЯ КНОПКА ---- */
+.buy-btn {
+  background: #218838;
+  color: white;
+  border-radius: 10px;
+  padding: 12px;
+  width: 100%;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  opacity: 1;
+  transform: translateY(0);
+  transition: background .2s;
+}
+
+.buy-btn:hover {
+  background: #218838;
+}
+
+/* Анимация при появлении модалки (сохранили красиво) */
+.modal.active .buy-btn {
+  animation: btnIn .4s ease forwards;
+}
+
+@keyframes btnIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* КРЕСТИК */
+.modal-close {
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  cursor: pointer;
+  color: #666;
+}
+
+/* ====== ТАБЛИЦА В МОДАЛКЕ ====== */
+.modal-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.modal-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.modal-table td:first-child {
+  font-weight: bold;
+  width: 35%;
+}
+
+/* Блокировка скролла */
+body.modal-open {
+  overflow: hidden;
+}

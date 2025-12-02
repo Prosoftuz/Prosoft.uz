@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prosoft — Интернет-магазин</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<!-- overlay glow & floating layers -->
+<div class="body-glow" aria-hidden="true"></div>
+<div class="floating-icons" aria-hidden="true">
+  <!-- small SVG tech shapes (as background decorative icons) -->
+  <svg style="position:absolute;left:8%;top:12%;width:120px;opacity:.06;transform:rotate(12deg)" viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="80" rx="8" fill="#0a7f3f"/></svg>
+  <svg style="position:absolute;left:70%;top:22%;width:180px;opacity:.04;transform:rotate(-8deg)" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="#0a7f3f"/></svg>
+</div>
+
+<!-- particles -->
+<div class="background-particles" aria-hidden="true">
+  <div class="particle" style="left:4%; animation-delay:0s; width:160px;"></div>
+  <div class="particle" style="left:18%; animation-delay:2s; width:120px;"></div>
+  <div class="particle" style="left:35%; animation-delay:1s; width:200px;"></div>
+  <div class="particle" style="left:54%; animation-delay:3s; width:140px;"></div>
+  <div class="particle" style="left:72%; animation-delay:.5s; width:170px;"></div>
+  <div class="particle" style="left:88%; animation-delay:2.5s; width:130px;"></div>
+</div>
+
+<!-- ========== HEADER ========== -->
+<header class="header" role="banner">
+  <div class="brand">
+    <button class="burger" id="sidebarToggle" aria-label="Показать меню" title="Каталог">
+      <svg viewBox="0 0 24 24" width="18" height="18"><path d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/></svg>
+    </button>
+    <div class="logo">PROSOFT.uz</div>
+  </div>
+
+  <nav aria-label="Главная навигация">
+    <a href="#novelty">Новинки</a>
+    <a href="#offers">Предложения</a>
+    <a href="#popular">Популярное</a>
+    <a href="#contacts">Контакты</a>
+  </nav>
+
+  <div class="icons" aria-hidden="false">
+    <div class="icon-wrap" id="favBtn" title="Избранное" role="button" aria-label="Избранное">
+      <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6 4 4 6.5 4c1.54 0 3.04.99 3.57 2.36h1.87C14.46 4.99 15.96 4 17.5 4 20 4 22 6 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    </div>
+    <div class="icon-wrap" id="cartBtn" title="Корзина" role="button" aria-label="Корзина">
+      <svg viewBox="0 0 24 24"><path d="M7 4h-2l-1 2h2l3.6 7.59-1.35 2.45C7.89 16.37 8.5 17 9.25 17h9.45v-2H9.25l.9-1.63L19 6H7zM7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2z"/></svg>
+    </div>
+    <div class="icon-wrap" id="callBtn" title="Связь" role="button" aria-label="Связь">
+      <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.21.48 2.53.74 3.88.74a1 1 0 011 1v3.5a1 1 0 01-1 1C10.07 21.88 2.12 13.93 2.12 3.12A1 1 0 013.12 2.12H6.6a1 1 0 011 1c0 1.35.26 2.67.74 3.88a1 1 0 01-.22 1.11l-2.2 2.2z"/></svg>
+    </div>
+  </div>
+</header>
+
+
+<!-- ========== MAIN ========== -->
+<main class="container" role="main">
+  <!-- SIDEBAR (catalog) -->
+  <aside class="sidebar" id="sidebar" aria-label="Каталог и услуги">
+    <h4>Каталог и услуги</h4>
+    <a href="#"><i class="fa-solid fa-wrench" style="color:var(--accent);width:16px"></i> Ремонт компьютеров</a>
+    <a href="#"><i class="fa-solid fa-puzzle-piece" style="color:var(--accent);width:16px"></i> Установка Windows / ПО</a>
+    <a href="#"><i class="fa-solid fa-gamepad" style="color:var(--accent);width:16px"></i> Установка игр</a>
+    <a href="#"><i class="fa-solid fa-microchip" style="color:var(--accent);width:16px"></i> Продажа комплектующих</a>
+    <a href="#"><i class="fa-solid fa-print" style="color:var(--accent);width:16px"></i> Печать / Копирование</a>
+    <a href="#"><i class="fa-solid fa-truck" style="color:var(--accent);width:16px"></i> Выезд мастера</a>
+
+    <hr style="margin:12px 0;border:none;border-top:1px solid rgba(0,0,0,0.06)">
+
+     <!-- FILTERS -->
+    <div style="margin-top:8px">
+      <div style="font-weight:700;color:var(--accent);margin-bottom:8px">Фильтры</div>
+      <div class="filter"><label>Цена</label>
+       <input type="range" id="priceRange" min="0" max="10000000" value="10000000" step="1000" style="width:100%"></div>
+       <span id="priceValue">10 000 000 сум</span>
+      <div class="filter" style="margin-top:8px">
+        <select id="categoryFilter">
+          <option value="all">Все категории</option>
+          <option value="components">Комплектующие</option>
+          <option value="peripherals">Периферия</option>
+          <option value="services">Услуги</option>
+        </select>
+      </div>
+      <div style="margin-top:10px">
+        <button id="applyFilters" style="padding:8px 12px;border-radius:8px;border:0;background:var(--accent);color:#fff;font-weight:700;cursor:pointer">Применить</button>
+      </div>
+    </div>
+  </aside>
+
+<!-- CONTENT -->
+  <section class="content">
+
+    <!-- ========== Новинки ========== -->
+    <section id="novelty" class="section" aria-labelledby="noveltyTitle">
+      <div class="bg-layer" style="background-image:url('https://via.placeholder.com/1200x400/ade2d6/ffffff');"></div>
+      <h2 id="noveltyTitle" class="section-title">Новинки</h2>
+
+        <!-- КАРТОЧКИ НОВИНКИ -->
+          <div class="products" id="hitsGrid">
+<!-- =========================================================================================================================================== -->
+        <article class="product" data-category="components" data-price="3500000" data-tags="novelty" role="listitem">
+          <div class="label novelty">Новинка</div>
+          <div class="card"><div class="card-media"><img loading="lazy" src="https://asset.msi.com/resize/image/global/product/product_16812916502ca0a14b6dfb5319c99da1d4ffb3a8ad.png62405b38c58fe0f07fcef2367d8a9ba1/1024.png" alt="Видеокарта RTX 4070"></div>
+          <div class="card-body"><h3>Видеокарта RTX 4070</h3><p>3 500 000 сум</p><button class="btn">Купить</button></div></div>
+        </article>
+
+
+        <article class="product" data-category="components" data-price="2800000" data-tags="hit" role="listitem">
+          <div class="label hit">Хит</div>
+          <div class="card"><div class="card-media"><img loading="lazy" src="https://cdn.mos.cms.futurecdn.net/4EWooKh2ThhE6G3VWzGujY.jpg" alt="Процессор Intel i9"></div>
+          <div class="card-body"><h3>Процессор Intel i9</h3><p>2 800 000 сум</p><button class="btn">Купить</button></div></div>
+        </article>
+
+
+        <article class="product" data-category="components" data-price="900000" data-tags="sale" role="listitem">
+          <div class="label sale">Скидка</div>
+          <div class="card"><div class="card-media"><img loading="lazy" src="https://notebookcentre.am/wa-data/public/shop/products/15/63/6315/images/12419/12419.970.PNG" alt="SSD 1TB"></div>
+          <div class="card-body"><h3>SSD 1TB</h3><p>900 000 сум</p><button class="btn">Купить</button></div></div>
+        </article>
+
+
+          <article class="product" data-category="components" data-price="900000" data-tags="sale" role="listitem">
+          <div class="label sale">Скидка</div>
+          <div class="card"><div class="card-media"><img loading="lazy" src="https://phonerepair.co.ke/wp-content/uploads/2024/12/Why-13-Inch-MacBook-Pro-Core-i5-2019-1.jpg" alt="SSD 1TB"></div>
+          <div class="card-body"><h3>SSD 1TB</h3><p>900 000 сум</p><button class="btn">Купить</button></div></div>
+        </article>
+
+
+        <article class="product" data-category="components" data-price="3500000" data-tags="novelty" role="listitem">
+         <div class="label novelty">Новинка</div>
+         <div class="card"><div class="card-media"><img loading="lazy" src="https://www.ixbt.com/img/n1/news/2022/2/3/PlayStation-Store_large.jpg" alt="Видеокарта RTX 4070"></div>
+         <div class="card-body"><h3>Видеокарта RTX 4070</h3><p>3 500 000 сум</p><button class="btn">Купить</button></div></div>
+        </article>
+
+
+        <article class="product" data-category="components" data-price="3500000" data-tags="novelty" role="listitem">
+         <div class="label novelty">Новинка</div>
+         <div class="card"><div class="card-media"><img loading="lazy" src="https://www.ixbt.com/img/n1/news/2022/2/3/PlayStation-Store_large.jpg" alt="Видеокарта RTX 4070"></div>
+         <div class="card-body"><h3>Видеокарта RTX 4070</h3><p>3 500 000 сум</p><button class="btn">Купить</button></div></div>
+        </article>
+
+
+        <article class="product" data-category="components" data-price="3500000" data-tags="novelty" role="listitem">
+         <div class="label novelty">Новинка</div>
+         <div class="card"><div class="card-media"><img loading="lazy" src="https://www.ixbt.com/img/n1/news/2022/2/3/PlayStation-Store_large.jpg" alt="Видеокарта RTX 4070"></div>
+         <div class="card-body"><h3>Видеокарта RTX 4070</h3><p>3 500 000 сум</p><button class="btn">Купить</button></div></div>
+        </article>
+
+
+        <article class="product" data-category="components" data-price="3500000" data-tags="novelty" role="listitem">
+         <div class="label novelty">Новинка</div>
+         <div class="card"><div class="card-media"><img loading="lazy" src="https://www.ixbt.com/img/n1/news/2022/2/3/PlayStation-Store_large.jpg" alt="Видеокарта RTX 4070"></div>
+         <div class="card-body"><h3>Видеокарта RTX 4070</h3><p>3 500 000 сум</p><button class="btn">Купить</button></div></div>
+        </article>
+<!-- =========================================================================================================================================== -->
+      </div>
+    </section>
+
+    <!-- ========== Предложения ========== -->
+    <section id="offers" class="section" aria-labelledby="offersTitle">
+      <div class="bg-layer" style="background-image:url('https://via.placeholder.com/1200x400/ffd6c9/ffffff');"></div>
+      <h2 id="offersTitle" class="section-title">Предложения</h2>
+
+      <!-- КАРТОЧКИ предложения -->
+       <div class="products" id="offersGrid">
+<!-- =========================================================================================================================================== -->
+        <article class="product" data-category="components" data-price="3500000" data-tags="novelty" role="listitem">
+         <div class="label novelty">Новинка</div>
+         <div class="card"><div class="card-media"><img loading="lazy" src="https://www.ixbt.com/img/n1/news/2022/2/3/PlayStation-Store_large.jpg" alt="Видеокарта RTX 4070"></div>
+         <div class="card-body"><h3>Видеокарта RTX 4070</h3><p>3 500 000 сум</p><button class="btn">Купить</button></div></div>
+        </article>
+        
+
+        <article class="product" data-category="components" data-price="3500000" data-tags="novelty" role="listitem">
+         <div class="label novelty">Новинка</div>
+         <div class="card"><div class="card-media"><img loading="lazy" src="https://www.ixbt.com/img/n1/news/2022/2/3/PlayStation-Store_large.jpg" alt="Видеокарта RTX 4070"></div>
+         <div class="card-body"><h3>Видеокарта RTX 4070</h3><p>3 500 000 сум</p><button class="btn">Купить</button></div></div>
+        </article>
+
+
+        <article class="product" data-category="components" data-price="3500000" data-tags="novelty" role="listitem">
+         <div class="label novelty">Новинка</div>
+         <div class="card"><div class="card-media"><img loading="lazy" src="https://www.ixbt.com/img/n1/news/2022/2/3/PlayStation-Store_large.jpg" alt="Видеокарта RTX 4070"></div>
+         <div class="card-body"><h3>Видеокарта RTX 4070</h3><p>3 500 000 сум</p><button class="btn">Купить</button></div></div>
+        </article>
+
+
+        <article class="product" data-category="components" data-price="3500000" data-tags="novelty" role="listitem">
+         <div class="label novelty">Новинка</div>
+         <div class="card"><div class="card-media"><img loading="lazy" src="https://www.ixbt.com/img/n1/news/2022/2/3/PlayStation-Store_large.jpg" alt="Видеокарта RTX 4070"></div>
+         <div class="card-body"><h3>Видеокарта RTX 4070</h3><p>3 500 000 сум</p><button class="btn">Купить</button></div></div>
+        </article>
+
+
+        <article class="product" data-category="components" data-price="3500000" data-tags="novelty" role="listitem">
+         <div class="label novelty">Новинка</div>
+         <div class="card"><div class="card-media"><img loading="lazy" src="https://www.ixbt.com/img/n1/news/2022/2/3/PlayStation-Store_large.jpg" alt="Видеокарта RTX 4070"></div>
+         <div class="card-body"><h3>Видеокарта RTX 4070</h3><p>3 500 000 сум</p><button class="btn">Купить</button></div></div>
+        </article>
+
+
+        <article class="product" data-category="components" data-price="3500000" data-tags="novelty" role="listitem">
+         <div class="label novelty">Новинка</div>
+         <div class="card"><div class="card-media"><img loading="lazy" src="https://www.ixbt.com/img/n1/news/2022/2/3/PlayStation-Store_large.jpg" alt="Видеокарта RTX 4070"></div>
+         <div class="card-body"><h3>Видеокарта RTX 4070</h3><p>3 500 000 сум</p><button class="btn">Купить</button></div></div>
+        </article>
+
+
+        <article class="product" data-category="components" data-price="3500000" data-tags="novelty" role="listitem">
+         <div class="label novelty">Новинка</div>
+         <div class="card"><div class="card-media"><img loading="lazy" src="https://www.ixbt.com/img/n1/news/2022/2/3/PlayStation-Store_large.jpg" alt="Видеокарта RTX 4070"></div>
+         <div class="card-body"><h3>Видеокарта RTX 4070</h3><p>3 500 000 сум</p><button class="btn">Купить</button></div></div>
+        </article>
+<!-- =========================================================================================================================================== -->
+      </div>
+    </section>
+
+
+    <!-- ========== Сервисы Prosoft ========== -->
+    <section id="services" class="section" aria-labelledby="servicesTitle">
+      <h2 id="servicesTitle" class="section-title">Сервисы Prosoft</h2>
+      <div class="services-grid">
+        <div class="service"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg><div style="font-weight:700;margin-top:6px">Компьютерные услуги</div><div style="color:var(--muted);font-size:13px">Сборка ПК, Установка ПО и игр, Windows</div></div>
+        <div class="service"><svg viewBox="0 0 24 24"><path d="M3 6h18v2H3z"/></svg><div style="font-weight:700;margin-top:6px">Типографические услуги</div><div style="color:var(--muted);font-size:13px">Распечатка, фото, Ксерокопия</div></div>
+        <div class="service"><svg viewBox="0 0 24 24"><path d="M20 6H8l-2 9h14l2-9z"/></svg><div style="font-weight:700;margin-top:6px">Графические услуги</div><div style="color:var(--muted);font-size:13px">Adobe Premiere Pro, After Effects, Photoshop</div></div>
+        <div class="service"><svg viewBox="0 0 24 24"><path d="M4 4h16v2H4z"/></svg><div style="font-weight:700;margin-top:6px">Офисные услуги</div><div style="color:var(--muted);font-size:13px">Word, Exel, PowerPoint</div></div>
+      </div>
+    </section>
+
+    <!-- ========== Популярное ========== -->
+    <section id="popular" class="section" aria-labelledby="popularTitle">
+      <div class="bg-layer" style="background-image:url('https://via.placeholder.com/1200x400/cce7ff/ffffff');"></div>
+      <h2 id="popularTitle" class="section-title">Популярные товары</h2>
+
+      <!-- КАРТОЧКИ популярные -->
+      <div class="products" id="popularGrid">
+<!-- =========================================================================================================================================== -->
+        <article class="product" data-category="components" data-price="3500000" data-tags="novelty"
+        data-desc=""
+        role="listitem">
+         <div class="label novelty">Новинка</div>
+         <div class="card"><div class="card-media"><img loading="lazy" src="https://www.ixbt.com/img/n1/news/2022/2/3/PlayStation-Store_large.jpg" alt="Видеокарта RTX 4070"></div>
+         <div class="card-body"><h3>Видеокарта RTX 4070</h3><p>3 500 000 сум</p><button class="btn">Купить</button></div></div>
+        </article>
+
+
+        <article class="product" data-category="components" data-price="3500000" data-tags="novelty"
+        data-desc=""
+        role="listitem">
+         <div class="label novelty">Новинка</div>
+         <div class="card"><div class="card-media"><img loading="lazy" src="https://www.ixbt.com/img/n1/news/2022/2/3/PlayStation-Store_large.jpg" alt="Видеокарта RTX 4070"></div>
+         <div class="card-body"><h3>Видеокарта RTX 4070</h3><p>3 500 000 сум</p><button class="btn">Купить</button></div></div>
+        </article>
+
+
+        <article class="product" data-category="components" data-price="3500000" data-tags="novelty"
+        data-desc=""
+        role="listitem">
+         <div class="label novelty">Новинка</div>
+         <div class="card"><div class="card-media"><img loading="lazy" src="https://www.ixbt.com/img/n1/news/2022/2/3/PlayStation-Store_large.jpg" alt="Видеокарта RTX 4070"></div>
+         <div class="card-body"><h3>Видеокарта RTX 4070</h3><p>3 500 000 сум</p><button class="btn">Купить</button></div></div>
+        </article>
+
+
+        <article class="product" data-category="components" data-price="3500000" data-tags="novelty"
+        data-desc=""
+        role="listitem">
+         <div class="label novelty">Новинка</div>
+         <div class="card"><div class="card-media"><img loading="lazy" src="https://www.ixbt.com/img/n1/news/2022/2/3/PlayStation-Store_large.jpg" alt="Видеокарта RTX 4070"></div>
+         <div class="card-body"><h3>Видеокарта RTX 4070</h3><p>3 500 000 сум</p><button class="btn">Купить</button></div></div>
+        </article>
+
+
+        <article class="product" data-category="components" data-price="3500000" data-tags="novelty"
+        data-desc=""
+        role="listitem">
+         <div class="label novelty">Новинка</div>
+         <div class="card"><div class="card-media"><img loading="lazy" src="https://www.ixbt.com/img/n1/news/2022/2/3/PlayStation-Store_large.jpg" alt="Видеокарта RTX 4070"></div>
+         <div class="card-body"><h3>Видеокарта RTX 4070</h3><p>3 500 000 сум</p><button class="btn">Купить</button></div></div>
+        </article>
+        
+
+        <article class="product" data-category="components" data-price="3500000" data-tags="novelty"
+        data-desc=""
+        role="listitem">
+         <div class="label novelty">Новинка</div>
+         <div class="card"><div class="card-media"><img loading="lazy" src="https://www.ixbt.com/img/n1/news/2022/2/3/PlayStation-Store_large.jpg" alt="Видеокарта RTX 4070"></div>
+         <div class="card-body"><h3>Видеокарта RTX 4070</h3><p>3 500 000 сум</p><button class="btn">Купить</button></div></div>
+        </article>
+
+
+        <article class="product" data-category="components" data-price="3500000" data-tags="novelty"
+        data-desc=""
+        role="listitem">
+         <div class="label novelty">Новинка</div>
+         <div class="card"><div class="card-media"><img loading="lazy" src="https://www.ixbt.com/img/n1/news/2022/2/3/PlayStation-Store_large.jpg" alt="Видеокарта RTX 4070"></div>
+         <div class="card-body"><h3>Видеокарта RTX 4070</h3><p>3 500 000 сум</p><button class="btn">Купить</button></div></div>
+        </article>
+<!-- =========================================================================================================================================== -->
+  </section>
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer id="contacts" role="contentinfo">
+  <div>
+    <h4>О компании</h4>
+    <a href="#">О нас</a>
+    <a href="#">Контакты</a>
+    <a href="#">Карьера</a>
+  </div>
+  <div>
+    <h4>Новинки</h4>
+    <a href="#novelty">Новые товары</a>
+    <a href="#popular">Популярное</a>
+  </div>
+  <div>
+    <h4>Предложения</h4>
+    <a href="#offers">Акции</a>
+    <a href="#offers">Скидки</a>
+  </div>
+  <div>
+    <h4>Каталог</h4>
+    <a href="#">Комплектующие</a>
+    <a href="#">Услуги</a>
+  </div>
+  <div class="center" style="width:100%; margin-top:12px; font-size:13px; color:var(--muted)">
+    © Prosoft — все права защищены
+  </div>
+</footer>
+
+<!-- ========== MOBILE BOTTOM BAR ========== -->
+<nav class="bottom-bar" aria-label="Мобильная навигация">
+  <a href="#" title="Главная"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M3 9.5L12 3l9 6.5V21a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/></svg><span>Главная</span></a>
+  <a href="#novelty" title="Каталог"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M3 4h18v2H3V4zm0 5h18v2H3V9zm0 5h18v2H3v-2z"/></svg><span>Каталог</span></a>
+  <a href="#" title="Избранное"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6 4 4 6.5 4c1.54 0 3.04.99 3.57 2.36h1.87C14.46 4.99 15.96 4 17.5 4 20 4 22 6 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span>Избранное</span></a>
+  <a href="#contacts" title="Контакты"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 2a8 8 0 100 16 8 8 0 000-16zm-1 9H7v2h4v4h2v-4h4v-2h-4V7h-2v4z"/></svg><span>Контакты</span></a>
+</nav>
+
+<!-- ===== UNIVERSAL PRODUCT MODAL ===== -->
+<div id="productModal" class="modal">
+  <div class="modal-content">
+    <button id="modalClose" class="modal-close">✖️</button>
+
+    <img id="modalImage" alt="" />
+    <h2 id="modalTitle"></h2>
+    <p id="modalPrice"></p>
+    <div id="modalDesc" class="modal-desc"></div>
+
+    <div style="display:flex;gap:8px;align-items:center;margin-top:12px;">
+      <button id="modalBuy" class="btn buy-btn">Купить</button>
+      <button id="modalFav" class="btn" style="background:#ac2626;color:#fff;border-radius:8px">❤️ В избранное</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
