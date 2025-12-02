@@ -694,176 +694,57 @@ body.modal-open {
   overflow: hidden;
 }
 
-
-
-
-
-/* =============================
-   📱 MOBILE — HEADER (FULL ADAPTIVE)
-   ============================= */
-@media (max-width: 480px) {
-
-  /* сам хедер */
-  .header {
-    position: sticky !important;
-    top: 0 !important;
-    z-index: 9999 !important;
-    padding: 10px 14px;
-    height: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-  }
-
-  /* скрываем десктоп меню */
-  .header nav {
-    display: none !important;
-  }
-
-  /* логотип */
-  .logo {
-    font-size: 18px;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-  }
-
-  /* левая часть: бургер + логотип */
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  /* бургер-кнопка */
-  .burger {
-    border: 0;
-    background: rgba(0,0,0,0.06);
-    padding: 8px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .burger svg {
-    width: 22px;
-    height: 22px;
-  }
-
-  /* блок иконок справа */
-  .icons {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
-
-  .icon-wrap {
-    width: 38px;
-    height: 38px;
-    background: rgba(0,0,0,0.06);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .icon-wrap svg {
-    width: 18px;
-    height: 18px;
-  }
-}
-
-/* =============================
-   📱 MOBILE — SIDEBAR ADAPTIVE
-   ============================= */
-@media (max-width: 480px) {
-
-  /* контейнер под мобильный перестраиваем в колонку */
-  .container {
-    flex-direction: column;
-    padding: 14px;
-    gap: 18px;
-  }
-
-  /* sidebar — занимает весь экран */
-  .sidebar {
-    width: 82%;
-    max-width: 300px;
-    height: 100vh;
-    padding: 20px;
-    top: 0;
-    left: -100%;  /* скрыт полностью */
-    opacity: 0;
-    position: fixed;
-    border-radius: 0 12px 12px 0;
-    box-shadow: 0 0 40px rgba(0,0,0,0.28);
-    transition: left .35s ease, opacity .25s ease;
-    z-index: 999;
-    background: #fff; /* без прозрачности */
-  }
-
-  /* активный — плавно выезжает */
-  .sidebar.active {
-    left: 0;
-    opacity: 1;
-  }
-
-  /* текст и ссылки — больше отступы */
-  .sidebar a {
-    padding: 12px;
-    font-size: 16px;
-  }
-
-  /* кнопки фильтра */
-  #applyFilters {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-  }
-
-  /* контент поднимается, занимает всю ширину */
-  .content {
-    width: 100%;
-    padding: 0;
-  }
-}
-
 /* ==================================================
-   📱 MOBILE — FULL ADAPTIVE (HEADER + SIDEBAR +
-   PRODUCTS + SECTIONS + SERVICES)
+   📱 MOBILE — FULL ADAPTIVE FOR PROSOFT (480px-)
    ================================================== */
 @media (max-width: 480px) {
 
-  /* ---------- HEADER ---------- */
-  .header {
-    position: sticky !important;
-    top: 0 !important;
-    z-index: 9999 !important;
-    padding: 10px 14px;
-    height: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-  }
+/* -----------------------------------------
+   HEADER (fixed + styled)
+----------------------------------------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 2000 !important;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding: 12px 18px;
 
-/* ---- ЛОГО ---- */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+/* логотип */
 .logo {
   font-size: 20px;
   font-weight: 800;
-  letter-spacing: 0.5px;
   color: var(--accent);
-  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  letter-spacing: 0.4px;
 }
 
-/* ---- BURGER ---- */
+/* левая зона */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* бургер */
 .burger {
-  background: rgba(10,127,63,0.08); /* зелёный намёк */
+  background: rgba(10,127,63,0.08);
   border: 1px solid rgba(10,127,63,0.15);
   padding: 8px;
   border-radius: 10px;
-  cursor: pointer;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
   transition: .18s ease;
 }
 
@@ -878,260 +759,232 @@ body.modal-open {
   fill: var(--accent-dark);
 }
 
+/* правые иконки */
+.icons {
+  display: flex;
+  gap: 10px;
+}
 
-/* ---- ICON BUTTONS (избранное / корзина / связь) ---- */
 .icon-wrap {
   width: 44px;
   height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   border-radius: 12px;
   background: rgba(10,127,63,0.06);
   border: 1px solid rgba(10,127,63,0.12);
 
-  transition: .18s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   cursor: pointer;
+  transition: .18s;
 }
 
 .icon-wrap svg {
   width: 20px;
   height: 20px;
   fill: var(--accent);
-  transition: .18s ease;
 }
 
 .icon-wrap:hover {
   background: rgba(10,127,63,0.12);
   transform: translateY(-2px);
-  box-shadow: 0 3px 10px rgba(10,127,63,0.15);
 }
 
-.icon-wrap:hover svg {
-  fill: var(--accent-dark);
-  transform: scale(1.12);
+
+/* скрыть десктоп навигацию */
+.header nav { display: none !important; }
+
+/* -----------------------------------------
+   SIDEBAR (CATALOG)
+----------------------------------------- */
+.sidebar {
+  width: 80%;
+  max-width: 300px;
+  height: 100vh;
+  padding: 20px 18px;
+
+  position: fixed;
+  top: 0;
+  left: -100%;
+  opacity: 0;
+
+  background: #fff;
+  border-radius: 0 12px 12px 0;
+  box-shadow: 0 0 40px rgba(0,0,0,0.28);
+
+  transition: left .35s ease, opacity .25s ease;
+  z-index: 3000 !important;
 }
 
-/* ---- NAV LINKS ---- */
-.header nav a {
-  padding: 8px 10px;
+.sidebar.active {
+  left: 0;
+  opacity: 1;
+}
+
+.sidebar h4 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: var(--accent);
+}
+
+.sidebar a {
+  font-size: 15px;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
   border-radius: 8px;
   color: #333;
-  font-weight: 500;
-
-  transition: .18s ease;
 }
 
-.header nav a:hover {
-  color: var(--accent-dark);
+.sidebar a:hover {
   background: rgba(10,127,63,0.06);
-  transform: translateY(-2px);
+  color: var(--accent-dark);
 }
 
-  /* ---------- SIDEBAR ---------- */
-  .sidebar {
-    width: 80%;
-    max-width: 300px;
-    height: 100vh;
-    padding: 20px;
-    top: 0;
-    left: -100%;
-    opacity: 0;
-    position: fixed;
-    background: #fff;
-    border-radius: 0 12px 12px 0;
-    box-shadow: 0 0 40px rgba(0,0,0,0.28);
-    transition: left .35s ease, opacity .25s ease;
-    z-index: 999;
-  }
-
-  .sidebar.active {
-    left: 0;
-    opacity: 1;
-  }
-
-  .sidebar h4 {
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-
-  .sidebar a {
-    font-size: 15px;
-    padding: 10px;
-    border-radius: 8px;
-  }
-
-  .sidebar a i {
-    font-size: 16px;
-    width: 16px;
-  }
-
-  .filter label {
-    font-size: 14px;
-  }
-
-  #priceValue {
-    font-size: 14px;
-  }
-
-  #applyFilters {
-    padding: 12px;
-    font-size: 15px;
-    width: 100%;
-    border-radius: 8px;
-  }
-
-  /* ======== Кнопка закрытия каталога ======== */
+/* Крестик */
 .close-sidebar {
   position: absolute;
   top: 12px;
   right: 12px;
-  background: rgba(10,127,63,0.08);
-  border: 1px solid rgba(10,127,63,0.18);
+
   width: 38px;
   height: 38px;
   border-radius: 10px;
+
+  background: rgba(10,127,63,0.08);
+  border: 1px solid rgba(10,127,63,0.18);
 
   display: flex;
   align-items: center;
   justify-content: center;
 
   cursor: pointer;
-  transition: .2s ease;
+  transition: .2s;
 }
 
 .close-sidebar:hover {
   background: rgba(10,127,63,0.15);
-  transform: scale(1.07);
+  transform: scale(1.05);
 }
 
-.close-sidebar svg {
-  width: 20px;
-  height: 20px;
-  stroke: var(--accent-dark);
-  stroke-width: 2;
-  fill: none;
-  transition: .2s ease;
+/* фильтры */
+.filter label {
+  font-size: 14px;
 }
 
-.close-sidebar:hover svg {
-  stroke: var(--accent);
+#priceValue {
+  font-size: 14px;
+}
+
+#applyFilters {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  border-radius: 8px;
 }
 
 
-
-  /* ---------- GLOBAL LAYOUT ---------- */
-  .container {
-    flex-direction: column;
-    padding: 12px;
-    gap: 16px;
-  }
-
-  .content {
-    width: 100%;
-    padding: 0;
-  }
-
-
-  /* ---------- SECTIONS ---------- */
-  .section {
-    padding: 14px 12px;
-    border-radius: 10px;
-  }
-
-  .section-title {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-
-  .section .bg-layer {
-    opacity: 0.04;
-  }
-
-
-
-  /* ---------- PRODUCTS GRID ---------- */
-  .products {
-    grid-template-columns:1fr!important;
-  }
-
-  .card {
-    border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-  }
-
-  .product:hover .card {
-    transform: none !important;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.06) !important;
-  }
-
-  .card-media img {
-    height: 125px;
-    object-fit: cover;
-  }
-
-  .card-body h3 {
-    font-size: 14px;
-    margin-bottom: 4px;
-  }
-
-  .card-body p {
-    font-size: 12px;
-  }
-
-  .btn {
-    padding: 10px;
-    font-size: 13px;
-    width: 100%;
-    border-radius: 8px;
-  }
-
-  .label {
-    font-size: 10px;
-    padding: 4px 6px;
-  }
-
-  .tag {
-    font-size: 11px;
-    padding: 5px 8px;
-  }
-
-  .ribbon {
-    width: 100px;
-    height: 28px;
-    font-size: 10px;
-  }
-
-
-
-  /* ---------- SERVICES (Prosoft) ---------- */
-  .services-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    padding: 4px;
-  }
-
-  .service {
-    padding: 12px;
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-    text-align: center;
-  }
-
-  .service svg {
-    width: 34px;
-    height: 34px;
-    margin-bottom: 6px;
-  }
-
-  .service div:nth-child(2) {
-    font-size: 14px;
-    font-weight: 700;
-  }
-
-  .service div:nth-child(3) {
-    font-size: 12px;
-    color: var(--muted);
-  }
+/* -----------------------------------------
+   GLOBAL LAYOUT
+----------------------------------------- */
+.container {
+  flex-direction: column;
+  padding: 12px;
+  gap: 18px;
 }
+
+.content {
+  width: 100%;
+  padding: 0;
+}
+
+
+/* -----------------------------------------
+   SECTIONS
+----------------------------------------- */
+.section {
+  padding: 14px 12px;
+  border-radius: 10px;
+}
+
+.section-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+
+/* -----------------------------------------
+   PRODUCTS GRID (1 column)
+----------------------------------------- */
+.products {
+  grid-template-columns: 1fr !important;
+  gap: 14px;
+}
+
+.card {
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+.card-media img {
+  height: 140px;
+  object-fit: cover;
+}
+
+.card-body h3 {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.card-body p {
+  font-size: 12px;
+}
+
+.btn {
+  padding: 10px;
+  font-size: 13px;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.label,
+.tag {
+  font-size: 11px;
+  padding: 4px 6px;
+}
+
+
+/* -----------------------------------------
+   SERVICES GRID
+----------------------------------------- */
+.services-grid {
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.service {
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.service svg {
+  width: 34px;
+  height: 34px;
+  margin-bottom: 6px;
+}
+
+.service div:nth-child(2) {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.service div:nth-child(3) {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+} /* END MEDIA */
