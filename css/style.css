@@ -60,13 +60,16 @@ body{
   -webkit-text-fill-color: transparent;
 
   text-transform: uppercase;
+  text-decoration: none; /* убираем подчёркивание */
   cursor: default;
 
   transition: transform .25s ease, opacity .25s ease;
 }
 
 .logo:hover {
+  color: var(--accent-dark);
   transform: scale(1.05);
+  transition: color 0.2s, transform 0.2s;
   opacity: .9;
 }
 
