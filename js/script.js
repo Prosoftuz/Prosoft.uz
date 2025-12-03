@@ -194,3 +194,17 @@ modal.addEventListener("click", (e) => {
 // СКРОЛЛ БЛОК 
 // ====================
 document.body.classList.remove("modal-open");
+
+
+// ============ SIDEBAR КНОПКА ==============
+const sidebar = document.getElementById('sidebar');
+const toggleBtn = document.getElementById('sidebarToggle');
+const closeSidebar = document.getElementById('closeSidebar');
+
+toggleBtn.addEventListener('click', () => {
+  sidebar.classList.add('active');  // добавляем класс active
+});
+
+closeSidebar.addEventListener('click', () => {
+  sidebar.classList.remove('active');  // закрываем
+});
