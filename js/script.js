@@ -101,127 +101,96 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   });
 
-  // ==== SIMPLE MODAL ====
+ // ===============================
+//   MODAL WITH GALLERY (PROSOFT)
+// ===============================
 
-// === helper: безопасное экранирование текста в HTML ===
-function escapeHtml(str) {
-  return String(str)
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#39;');
+// элементы модалки
+const modal = document.getElementById("productModal");
+const modalImg = document.getElementById("modalImage");
+const modalTitle = document.getElementById("modalTitle");
+const modalPrice = document.getElementById("modalPrice");
+const modalDesc = document.getElementById("modalDesc");
+const modalClose = document.getElementById("modalClose");
+
+// стрелки
+const prevBtn = document.querySelector(".gallery-nav.left");
+const nextBtn = document.querySelector(".gallery-nav.right");
+
+// Галерея
+let gallery = [];
+let galleryIndex = 0;
+
+// ====================
+// ОТКРЫТИЕ МОДАЛКИ
+// ====================
+function openModal(card) {
+    const images = card.dataset.images;
+
+    gallery = images ? JSON.parse(images) : [];
+    galleryIndex = 0;
+
+    modalImg.src = gallery[0] ?? "";
+
+    modalTitle.textContent = card.querySelector("h3")?.textContent || "";
+    modalPrice.textContent = card.querySelector("p")?.textContent || "";
+
+    modalDesc.innerHTML = card.dataset.desc || "Описание не указано";
+
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
 }
 
-// === главный обработчик клика (вставляй внутрь своего listener или используй как есть) ===
-document.addEventListener('click', function (e) {
-  const productCard = e.target.closest('.product');
-  if (!productCard) return;
-
-  const img = productCard.querySelector('img')?.src || '';
-  const title = productCard.querySelector('h3')?.textContent || 'Без названия';
-  const price = productCard.querySelector('p')?.textContent || '';
-  const rawDesc = productCard.dataset.desc ?? '';
-
-  let finalDescHTML = '';
-
-  if (rawDesc && rawDesc.includes(':')) {
-    const parts = rawDesc.split('|').map(p => p.trim()).filter(p => p.length > 0);
-
-    const rows = parts.reduce((acc, item) => {
-      const idx = item.indexOf(':');
-      if (idx === -1) return acc;
-
-      const rawKey = item.slice(0, idx).trim();
-      const rawValue = item.slice(idx + 1).trim();
-
-      const key = escapeHtml(rawKey);
-      const value = escapeHtml(rawValue);
-
-      acc.push`(<tr><td>${key}</td><td>${value}</td></tr>)`; // ← ПРАВИЛЬНО!
-      return acc;
-    }, []);
-
-    if (rows.length) {
-      finalDescHTML = `<table class="modal-table">${rows.join('')}</table>`; // ← ПРАВИЛЬНО!
-    } else {
-      finalDescHTML = `<p>${escapeHtml(rawDesc)}</p>`;
-    }
-  } else {
-    const text = rawDesc && rawDesc.trim().length ? rawDesc.trim() : 'Описание не указано';
-    finalDescHTML = `<p>${escapeHtml(text)}</p>`;
-  }
-
-  document.getElementById('modalImage').src = img;
-  document.getElementById('modalTitle').textContent = title;
-  document.getElementById('modalPrice').textContent = price;
-  document.getElementById('modalDesc').innerHTML = finalDescHTML;
-
-  openModal();
-});
-
-// ==== ОТКРЫТИЕ / ЗАКРЫТИЕ МОДАЛКИ ====
-function openModal() {
-  document.getElementById("productModal").classList.add("active");
-  document.documentElement.style.overflow = "hidden";
-  document.body.style.overflow = "hidden";
-}
-
+// ====================
+// ЗАКРЫТИЕ МОДАЛКИ
+// ====================
 function closeModal() {
-  document.getElementById("productModal").classList.remove("active");
-  document.documentElement.style.overflow = "";
-  document.body.style.overflow = "";
+    modal.classList.remove("active");
+    document.body.style.overflow = "";
 }
 
-document.getElementById("modalClose").addEventListener("click", closeModal);
-
-document.addEventListener("click", function (e) {
-  const modal = document.getElementById("productModal");
-  if (e.target === modal) closeModal();
-});
-
-let lastScrollTop = 0; // запоминаем позицию скролла
-
-// ==== ОТКРЫТИЕ МОДАЛКИ ====
-function openModal() {
-  lastScrollTop = window.scrollY; // где сейчас скролл
-  document.getElementById("productModal").classList.add("active");
-
-  // Блокируем скролл
-  document.body.classList.add("modal-open");
-  document.documentElement.style.overflow = "hidden";
+// ====================
+// ПЕРЕКЛЮЧЕНИЕ КАРТИНОК
+// ====================
+function showImage() {
+    modalImg.style.opacity = 0;
+    setTimeout(() => {
+        modalImg.src = gallery[galleryIndex];
+        modalImg.style.opacity = 1;
+    }, 150);
 }
 
-// ==== ЗАКРЫТИЕ МОДАЛКИ ====
-function closeModal() {
-  document.getElementById("productModal").classList.remove("active");
-
-  // Возвращаем скролл
-  document.body.classList.remove("modal-open");
-  document.documentElement.style.overflow = "hidden";
-
-  window.scrollTo(0, lastScrollTop); // ← ВОССТАНАВЛИВАЕМ!
-}
-
-// Крестик
-document.getElementById("modalClose").addEventListener("click", closeModal);
-
-// Клик по фону
-document.addEventListener("click", function (e) {
-  const modal = document.getElementById("productModal");
-  if (e.target === modal) closeModal();
+prevBtn.addEventListener("click", () => {
+    if (!gallery.length) return;
+    galleryIndex = (galleryIndex - 1 + gallery.length) % gallery.length;
+    showImage();
 });
 
-const sidebar = document.getElementById('sidebar'); // сам каталог
-const toggleBtn = document.getElementById('sidebarToggle'); // кнопка в header
-
-toggleBtn.addEventListener('click', () => {
-  sidebar.classList.toggle('active');
+nextBtn.addEventListener("click", () => {
+    if (!gallery.length) return;
+    galleryIndex = (galleryIndex + 1) % gallery.length;
+    showImage();
 });
 
-const closeSidebar = document.getElementById('closeSidebar');
-
-closeSidebar.addEventListener('click', () => {
-  sidebar.classList.remove('active');
+// ====================
+// КЛИК ПО КАРТОЧКЕ
+// ====================
+document.addEventListener("click", (e) => {
+    const card = e.target.closest(".product");
+    if (!card) return;
+    openModal(card);
 });
 
+// ====================
+// ЗАКРЫТИЕ
+// ====================
+modalClose.addEventListener("click", closeModal);
+
+modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+});
+
+// ====================
+// СКРОЛЛ БЛОК 
+// ====================
+document.body.classList.remove("modal-open");

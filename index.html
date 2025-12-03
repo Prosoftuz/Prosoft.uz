@@ -569,35 +569,44 @@
       </div>
     </div>
 
-        <div class="product show">
-      <div class="card">
-        <div class="card-media">
-          <img src="https://static.rozetked.me/imager/main/images/uploads/r524or0hUOnx.webp" alt="Товар 5">
-        </div>
-        <div class="card-body">
-          <h3>Монитор</h3>
-          <p>27", 144Hz, IPS</p>
-          <div class="card-price">1 199 000 сум</div>
-          <button class="btn">Купить</button>
-        </div>
-        <div class="label hit">Новинка</div>
-      </div>
-    </div>
+<div class="product show"
+data-desc="📐 Размеры / вес: 35.79 × 24.59 × 1.62 см, ≈ 2.0 кг. 
+B&H Photo Video
++1
+💻 Экран: 16, Retina, 3072×1920, IPS, 500 нит, P3 + True Tone. 
+Apple Support
++1
+⚙️ Процессор: Intel Core i7 (6‑ядерный) или Intel Core i9 (8‑ядерный), Turbo Boost до ~4.5–5.0 GHz. 
+Apple Support
++1
+🧠 ОЗУ: 16 ГБ (варианты 32 ГБ / 64 ГБ) DDR4. 
+Apple Support
++1
+💾 Хранение: SSD от 512 ГБ до 8 ТБ. 
+Apple Support
++1
+🎮 Графика: AMD Radeon Pro (5300M / 5500M / 5600M) + Intel UHD — дискретная + встроенная. 
+Apple Support
++1
+🔌 Порты / подключения: 4× Thunderbolt 3 (USB‑C), 3.5 мм выход для наушников, Wi‑Fi 802.11ac, Bluetooth 5.0.
+🔋 Батарея: 100 Wh, до ~11 ч работы при веб‑серфинге/видео." 
+     data-images='["https://www.apple.com/newsroom/images/product/mac/standard/Apple_16-inch-MacBook-Pro_Advanced-Thermal-Design_111319_inline.gif.large.gif",
+                   "https://overclockers.ru/st/legacy/blog/407828/260374_O.jpg",
+                   "https://www.apple.com/newsroom/images/product/mac/lifestyle/Apple_16-inch-MacBook-Pro_New-Magic-Keyboard_111319_inline.jpg.large.jpg"]'>
 
-    <div class="product show">
-      <div class="card">
-        <div class="card-media">
-          <img src="https://static.rozetked.me/imager/main/images/uploads/r524or0hUOnx.webp" alt="Товар 6">
-        </div>
-        <div class="card-body">
-          <h3>Жёсткий диск</h3>
-          <p>1TB, SSD</p>
-          <div class="card-price">399 000 сум</div>
-          <button class="btn">Купить</button>
-        </div>
-        <div class="label sale">Скидка</div>
-      </div>
+  <div class="card">
+    <div class="card-media">
+      <img src="https://www.apple.com/newsroom/images/tile-images/Apple_16-inch-MacBook-Pro_111319.jpg.landing-big_2x.jpg" alt="Товар 5">
     </div>
+    <div class="card-body">
+      <h3>MacBook Pro 16 (2019)</h3>  <!-- ========== НАЗВАНИЕИ ТОВАРА ========== -->
+      <p>Большой экран и профессиональная производительность.</p> <!-- ========== КОРОТКОЕ ОПИСАНИЕ ТОВАРА ========== -->
+      <div class="card-price">От 7 199 000 сум</div>
+      <button class="btn open-modal">Купить</button>
+    </div>
+    <div class="label hit">Новинка</div>
+  </div>
+</div>
   </div>
 </section>
 
@@ -629,22 +638,34 @@
   </div>
 </footer>
 
-<!-- ===== UNIVERSAL PRODUCT MODAL ===== -->
+
+
+ <!-- ===== UNIVERSAL PRODUCT MODAL ===== -->
 <div id="productModal" class="modal">
   <div class="modal-content">
+
     <button id="modalClose" class="modal-close">✖️</button>
 
-    <img id="modalImage" alt="" />
+    <!-- ГАЛЕРЕЯ -->
+    <div class="modal-gallery">
+    <button class="gallery-nav left">❮</button>
+    <img id="modalImage" src="" alt="">
+    <button class="gallery-nav right">❯</button>
+</div>
+
+
     <h2 id="modalTitle"></h2>
     <p id="modalPrice"></p>
     <div id="modalDesc" class="modal-desc"></div>
 
-    <div style="display:flex;gap:8px;align-items:center;margin-top:12px;">
+    <div class="modal-buttons">
       <button id="modalBuy" class="btn buy-btn">Купить</button>
-      <button id="modalFav" class="btn" style="background:#ac2626;color:#fff;border-radius:8px">❤️ В избранное</button>
+      <button id="modalFav" class="btn fav-btn">В избранное</button>
     </div>
+
   </div>
 </div>
+
 
 <script src="js/script.js"></script>
 </body>

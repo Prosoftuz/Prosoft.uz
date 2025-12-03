@@ -108,6 +108,8 @@ body{
 .icon-wrap:active {
   transform: scale(0.94);
 }
+
+
 .burger {
   padding: 10px 14px;
   background: linear-gradient(135deg, #0FA958, #0C8C48);
@@ -628,14 +630,15 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
   padding: 20px;
 }
 
-/* ====== MODAL - ЧИСТЫЙ ГОТОВЫЙ ВАРИАНТ ====== */
+/* ====== MODAL - FIRMENNY STYLE PROSOFT ====== */
 .modal {
   position: fixed;
-  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  inset: 0;
   display: none;
   align-items: center;
   justify-content: center;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.35); /* фирменный полупрозрачный зеленый */
+  backdrop-filter: blur(4px);
   z-index: 9999;
   padding: 20px;
 }
@@ -646,16 +649,17 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
   position: relative;
   width: 95%;
   max-width: 480px;
-  background: #fff;
+  background: #ffffff;
   border-radius: 16px;
   padding: 24px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-  animation: modalFade .25s ease;
+  box-shadow: 0 20px 60px rgba(10,127,63,0.25); /* мягкая фирменная тень */
+  animation: modalFade .3s ease;
+  transform-origin: top center;
 }
 
 @keyframes modalFade {
-  from { opacity: 0; transform: translateY(-10px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(-15px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .modal-content img {
@@ -664,19 +668,21 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
   object-fit: cover;
   border-radius: 12px;
   margin-bottom: 16px;
+  box-shadow: 0 6px 20px rgba(10,127,63,0.1);
 }
 
 #modalTitle {
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 22px;
+  font-weight: 800;
   margin-bottom: 6px;
+  color: var(--accent);
 }
 
 #modalPrice {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 800;
   margin-bottom: 12px;
-  color: #0a7f42;
+  color: var(--accent-dark);
 }
 
 .modal-desc {
@@ -688,73 +694,141 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
 /* ---- ЛИНИЯ ---- */
 .modal-divider {
   height: 1px;
-  background: #ddd;
+  background: rgba(10,127,63,0.15);
   margin: 12px 0;
 }
 
-/* ---- СТАТИЧНАЯ КНОПКА ---- */
+/* ---- галлерия ---- */
+.modal-gallery {
+  position: relative;
+  width: 100%;
+  max-height: 280px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.modal-gallery img {
+  width: 100%;
+  max-height: 280px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: opacity .3s ease;
+}
+
+/* Стрелки */
+.gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  background: rgba(15, 169, 88, 0.8);
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all .25s ease;
+}
+
+.gallery-nav:hover {
+  background: rgba(15, 169, 88, 1);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.gallery-nav.left { left: 8px; }
+.gallery-nav.right { right: 8px; }
+
+
+/* ---- КНОПКА КУПИТЬ ---- */
 .buy-btn {
-  background: #218838;
-  color: white;
+  background: var(--accent);
+  color: #fff;
   border-radius: 10px;
   padding: 12px;
   width: 100%;
   font-size: 16px;
   cursor: pointer;
   border: none;
-  opacity: 1;
-  transform: translateY(0);
-  transition: background .2s;
+  transition: all .25s ease;
 }
 
-.buy-btn:hover {
-  background: #218838;
-}
-
-/* Анимация при появлении модалки (сохранили красиво) */
 .modal.active .buy-btn {
   animation: btnIn .4s ease forwards;
 }
+
+.buy-btn:hover {
+  background: var(--accent-dark);
+  transform: scale(1.05);
+}
+
+/* Кнопка "В избранное" */
+#modalFav {
+  background: #ff4482;   /* фирменный ярко-зеленый цвет Prosoft */
+  color: #fff;                 /* белый текст */
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  opacity: 1 !important;       /* важное, чтобы не перекрывали другие стили */
+  transform: translateY(0) !important;
+  transition: all .25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#modalFav:hover {
+ background: #fc6195; 
+  transform: scale(1.05);
+}
+
 
 @keyframes btnIn {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* КРЕСТИК */
+/* ---- КРЕСТИК ---- */
 .modal-close {
   position: absolute;
   right: 12px;
   top: 10px;
-  border: none;
-  background: transparent;
-  font-size: 22px;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: rgba(10,127,63,0.08);
+  border: 1px solid rgba(10,127,63,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  color: #666;
+  font-size: 20px;
+  color: var(--accent-dark);
+  transition: all .2s;
+    z-index: 2000; /* Впереди всех элементов модалки */
 }
 
-/* ====== ТАБЛИЦА В МОДАЛКЕ ====== */
-.modal-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 12px;
-  font-size: 14px;
+.modal-close:hover {
+  background: rgba(10,127,63,0.15);
+  transform: scale(1.08);
 }
 
-.modal-table td {
-  padding: 6px 8px;
-  border-bottom: 1px solid #ddd;
-}
-
-.modal-table td:first-child {
-  font-weight: bold;
-  width: 35%;
-}
-
-/* Блокировка скролла */
+/* Блокировка скролла при открытой модалке */
 body.modal-open {
   overflow: hidden;
 }
+
 
 /* ==================================================
    📱 MOBILE — FULL ADAPTIVE FOR PROSOFT (480px-)
