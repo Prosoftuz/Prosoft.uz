@@ -703,8 +703,11 @@ body.modal-open {
    HEADER (fixed + styled)
 ----------------------------------------- */
 .header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
+
   z-index: 2000 !important;
   background: rgba(255,255,255,0.92);
   backdrop-filter: blur(8px);
@@ -717,6 +720,10 @@ body.modal-open {
   gap: 16px;
 
   box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+body {
+  padding-top: 80px; /* подбирается под высоту твоего header */
 }
 
 /* логотип */
