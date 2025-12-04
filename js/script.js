@@ -101,8 +101,8 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   });
 
- // ===============================
-//   MODAL WITH GALLERY (PROSOFT)
+// ===============================
+//   MODAL WITH GALLERY + INFO RIGHT
 // ===============================
 
 // элементы модалки
@@ -110,10 +110,13 @@ const modal = document.getElementById("productModal");
 const modalImg = document.getElementById("modalImage");
 const modalTitle = document.getElementById("modalTitle");
 const modalPrice = document.getElementById("modalPrice");
-const modalDesc = document.getElementById("modalDesc");
 const modalClose = document.getElementById("modalClose");
 
-// стрелки
+// вкладки
+const tabDesc = document.getElementById("descTab");
+const tabSpecs = document.getElementById("specsTab");
+
+// стрелки галереи
 const prevBtn = document.querySelector(".gallery-nav.left");
 const nextBtn = document.querySelector(".gallery-nav.right");
 
@@ -121,33 +124,54 @@ const nextBtn = document.querySelector(".gallery-nav.right");
 let gallery = [];
 let galleryIndex = 0;
 
+
 // ====================
 // ОТКРЫТИЕ МОДАЛКИ
 // ====================
 function openModal(card) {
-    const images = card.dataset.images;
 
-    gallery = images ? JSON.parse(images) : [];
-    galleryIndex = 0;
+  // ----- IMAGES -----
+  gallery = JSON.parse(card.dataset.images || "[]");
+  galleryIndex = 0;
+  modalImg.src = gallery[0] || "";
 
-    modalImg.src = gallery[0] ?? "";
 
-    modalTitle.textContent = card.querySelector("h3")?.textContent || "";
-    modalPrice.textContent = card.querySelector("p")?.textContent || "";
+  // ----- TITLE & PRICE -----
+  modalTitle.textContent = card.querySelector("h3")?.textContent || "";
+  modalPrice.textContent = card.querySelector(".card-price")?.textContent || "";
 
-    modalDesc.innerHTML = card.dataset.desc || "Описание не указано";
 
-    modal.classList.add("active");
-    document.body.style.overflow = "hidden";
+  // ----- DESCRIPTION -----
+  const desc = card.dataset.desc || "Описание отсутствует";
+  tabDesc.textContent = desc;
+
+
+  // ----- SPECS -----
+  const specsRaw = card.dataset.specs || "";
+  tabSpecs.innerHTML = buildSpecs(specsRaw);
+
+
+  // ----- OPEN -----
+  modal.style.display = "flex";
+  modal.classList.add("active");
+  document.body.style.overflow = "hidden";
 }
 
+
 // ====================
-// ЗАКРЫТИЕ МОДАЛКИ
+// СПЕЦИФИКАЦИИ
 // ====================
-function closeModal() {
-    modal.classList.remove("active");
-    document.body.style.overflow = "";
+function buildSpecs(str) {
+  if (!str.includes(":")) return "Нет характеристик";
+
+  const rows = str.split("|").map(line => {
+    const [key, val] = line.split(":");
+    return `<tr><td>${key.trim()}</td><td>${val.trim()}</td></tr>`;
+  }).join("");
+
+  return `<table class="modal-specs-table">${rows}</table>`;
 }
+
 
 // ====================
 // ПЕРЕКЛЮЧЕНИЕ КАРТИНОК
@@ -157,43 +181,72 @@ function showImage() {
     setTimeout(() => {
         modalImg.src = gallery[galleryIndex];
         modalImg.style.opacity = 1;
+        modalImg.style.transform = "scale(1.05)";
+        setTimeout(() => modalImg.style.transform = "scale(1)", 150);
     }, 150);
 }
 
+
 prevBtn.addEventListener("click", () => {
-    if (!gallery.length) return;
-    galleryIndex = (galleryIndex - 1 + gallery.length) % gallery.length;
-    showImage();
+  if (!gallery.length) return;
+  galleryIndex = (galleryIndex - 1 + gallery.length) % gallery.length;
+  showImage();
 });
 
 nextBtn.addEventListener("click", () => {
-    if (!gallery.length) return;
-    galleryIndex = (galleryIndex + 1) % gallery.length;
-    showImage();
+  if (!gallery.length) return;
+  galleryIndex = (galleryIndex + 1) % gallery.length;
+  showImage();
 });
 
+
 // ====================
-// КЛИК ПО КАРТОЧКЕ
+// ОТКРЫТИЕ ПО КАРТОЧКЕ
 // ====================
 document.addEventListener("click", (e) => {
-    const card = e.target.closest(".product");
-    if (!card) return;
-    openModal(card);
+  const card = e.target.closest(".product");
+  if (!card) return;
+
+  // НЕ открывать модалку при клике на кнопки навигации/иконки
+  if (e.target.closest(".icon-wrap")) return;
+
+  openModal(card);
 });
+
+
+// ====================
+// ТАБЫ
+// ====================
+document.addEventListener("click", function (e) {
+  if (e.target.classList.contains("tab-btn")) {
+    
+    // снимаем active со всех вкладок
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    e.target.classList.add("active");
+
+    // показываем содержимое
+    const tab = e.target.dataset.tab;
+    document.querySelectorAll(".tab-content").forEach(t => t.classList.remove("active"));
+    document.getElementById(tab + "Tab").classList.add("active");
+  }
+});
+
+
 
 // ====================
 // ЗАКРЫТИЕ
 // ====================
+function closeModal() {
+  modal.style.display = "none";
+  modal.classList.remove("active");
+  document.body.style.overflow = "";
+}
+
 modalClose.addEventListener("click", closeModal);
 
 modal.addEventListener("click", (e) => {
-    if (e.target === modal) closeModal();
+  if (e.target === modal) closeModal();
 });
-
-// ====================
-// СКРОЛЛ БЛОК 
-// ====================
-document.body.classList.remove("modal-open");
 
 
 // ============ SIDEBAR КНОПКА ==============
@@ -202,9 +255,9 @@ const toggleBtn = document.getElementById('sidebarToggle');
 const closeSidebar = document.getElementById('closeSidebar');
 
 toggleBtn.addEventListener('click', () => {
-  sidebar.classList.add('active');  // добавляем класс active
+  sidebar.classList.add('active');
 });
 
 closeSidebar.addEventListener('click', () => {
-  sidebar.classList.remove('active');  // закрываем
+  sidebar.classList.remove('active');
 });

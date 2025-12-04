@@ -1,4 +1,4 @@
-/* ========== THEME ========== */
+/* ======================================================  ТЕМА НАЧАЛО ============================================================== */
 :root{
   --accent:#0a7f3f;
   --accent-dark:#0c9950;
@@ -26,19 +26,18 @@ body{
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-
-/* overlay glow & floating icons container */
 .body-glow { position: fixed; inset:0; pointer-events:none; z-index:-2;
   background: radial-gradient(600px 300px at 10% 10%, rgba(10,127,63,0.04), transparent 7%),
               radial-gradient(500px 240px at 90% 90%, rgba(0,150,90,0.03), transparent 9%); }
 .floating-icons { position: fixed; inset:0; pointer-events:none; z-index:-1; }
-
-/* particles/lines */
 .background-particles { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index:-1; }
 .particle { position:absolute; height:2px; background: linear-gradient(90deg, rgba(10,127,63,0.14), rgba(10,127,63,0.03)); filter: blur(.6px); animation: floatLine 14s linear infinite; }
 @keyframes floatLine { 0%{transform:translateY(115vh) rotate(0deg) translateX(0); opacity:0} 10%{opacity:1} 90%{opacity:1} 100%{transform:translateY(-25vh) rotate(180deg) translateX(0); opacity:0} }
+/* ======================================================  ТЕМА КОНЕЦ ============================================================== */
 
-/* ========== HEADER ========== */
+
+
+/* ======================================================  ЗАГОЛОВОК НАЧАЛО ============================================================== */
 .header {
   position: fixed;
   top: 0;
@@ -54,25 +53,20 @@ body{
   font-size: 22px;
   font-weight: 800;
   letter-spacing: 0.5px;
-
   background: linear-gradient(135deg, #0FA958, #0C8C48);
   background-clip: text;
   -webkit-text-fill-color: transparent;
-
   text-transform: uppercase;
-  text-decoration: none; /* убираем подчёркивание */
+  text-decoration: none;
   cursor: default;
-
   transition: transform .25s ease, opacity .25s ease;
 }
-
 .logo:hover {
   color: var(--accent-dark);
   transform: scale(1.05);
   transition: color 0.2s, transform 0.2s;
   opacity: .9;
 }
-
 .header nav { display:flex; gap:12px; align-items:center; }
 .header nav a { color:#333; text-decoration:none; padding:8px 10px; border-radius:8px; transition:all .18s; }
 .header nav a:hover { color:var(--accent-dark); background:var(--glow); transform:translateY(-2px); }
@@ -108,8 +102,6 @@ body{
 .icon-wrap:active {
   transform: scale(0.94);
 }
-
-
 .burger {
   padding: 10px 14px;
   background: linear-gradient(135deg, #0FA958, #0C8C48);
@@ -139,11 +131,9 @@ body{
 .burger:active {
   transform: scale(0.96);
 }
-
-/* ========== LAYOUT ========== */
 .container { display:flex; gap:24px; padding:28px; align-items:flex-start; min-height:calc(100vh - 160px); }
 .sidebar {
-  background: #fff; /* полностью непрозрачный белый */
+  background: #fff;
   border-radius: 12px;
   padding: 18px;
   box-shadow: var(--shadow);
@@ -154,7 +144,6 @@ body{
   transition: left .28s ease, opacity .18s;
   z-index: 220;
 }
-
 .sidebar.active {
   left: 12px;
   opacity: 1;
@@ -162,42 +151,31 @@ body{
 .sidebar h4 { margin:0 0 12px; color:var(--accent); font-size:16px; }
 .sidebar a { display:flex; gap:10px; align-items:center; margin:8px 0; color:#333; text-decoration:none; padding:8px; border-radius:8px; transition:.18s; }
 .sidebar a:hover { background:rgba(0,0,0,0.03); transform:translateX(6px); color:var(--accent-dark); }
-
-/* Кнопка закрытия (контейнер) */
 .close-sidebar {
   position: absolute;
   top: 12px;
   right: 12px;
-
   width: 33px;
   height: 33px;
   border-radius: 12px;
-
   background: rgba(10, 127, 63, 0.10);
   border: 1px solid rgba(10, 127, 63, 0.25);
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
   transition: .2s;
   z-index: 9999;
 }
-
-/* Ховер */
 .close-sidebar:hover {
   background: rgba(10, 127, 63, 0.18);
   transform: scale(1.08);
 }
-
-/* Сам крестик */
 .close-icon {
   position: relative;
   width: 20px;
   height: 20px;
 }
-
 .close-icon::before,
 .close-icon::after {
   content: '';
@@ -206,33 +184,25 @@ body{
   top: 50%;
   width: 100%;
   height: 3px;
-
-  background: #0A7F3F; /* фирменный Prosoft зелёный */
+  background: #0A7F3F;
   border-radius: 3px;
-
   transform-origin: center;
 }
-
 .close-icon::before {
   transform: translate(-50%, -50%) rotate(45deg);
 }
-
 .close-icon::after {
   transform: translate(-50%, -50%) rotate(-45deg);
 }
-
-
-/* content area */
 .content { flex:1; display:flex; flex-direction:column; gap:40px; }
-
-/* ========== SECTIONS ========== */
 .section { position:relative; background:rgba(255,255,255,0.86); border-radius:12px; padding:18px; box-shadow:var(--shadow); overflow:visible; }
 .section-title { font-size:20px; color:var(--accent); margin:0 0 12px; }
-
-/* bg layer parallax */
 .section .bg-layer { position:absolute; inset:0; z-index:0; opacity:.06; background-position:center; background-size:cover; pointer-events:none; transform:translateY(0); transition:transform .6s ease; }
+/* ======================================================  ЗАГОЛОВОК КОНЕЦ ============================================================== */
 
-/* ===== PRODUCTS & SLIDER ===== */
+
+
+/* ======================================================  КАРТОЧКИ НАЧАЛО ============================================================== */
 .slider {
   display:flex;
   gap:16px;
@@ -249,7 +219,7 @@ body{
   padding: 20px;
 }
 
-/* ===== PRODUCT CARD ===== */
+/*КАРТОЧКА*/
 .product {
   position: relative;
   perspective: 1000px;
@@ -258,12 +228,10 @@ body{
   transition: transform .6s cubic-bezier(.2,.9,.3,1), opacity .6s ease, box-shadow .25s;
   z-index:1;
 }
-
 .product.show {
   transform: translateY(0);
   opacity:1;
 }
-
 .card {
   background: rgba(255,255,255,0.85);
   backdrop-filter: blur(6px);
@@ -275,7 +243,6 @@ body{
   will-change: transform;
   position: relative;
 }
-
 .card::before {
   content: "";
   position: absolute;
@@ -285,16 +252,13 @@ body{
   pointer-events: none;
   transition: background .28s ease;
 }
-
 .product:hover .card::before {
   background: linear-gradient(135deg, rgba(15,169,88,0.12), rgba(255,255,255,0));
 }
-
 .product:hover .card {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 12px 28px rgba(0,150,60,0.18);
 }
-
 .card-media img {
   width: 100%;
   height: 180px;
@@ -303,38 +267,33 @@ body{
   transition: transform .35s ease, filter .35s ease;
   display: block;
 }
-
 .product:hover .card-media img {
   transform: scale(1.06);
   filter: brightness(1.04);
 }
-
 .card-body {
   padding: 12px;
   text-align: center;
 }
-
 .card-body h3 {
   margin: 8px 0 6px;
   color: #0C8C48;
   font-size: 16px;
   font-weight: 700;
 }
-
 .card-body p {
   margin:0 0 10px;
   color: #333;
   font-size:14px;
   opacity:0.75;
 }
-
 .card-price {
   font-size:18px;
   font-weight:800;
   color:#0FA958;
 }
 
-/* BUTTON */
+/*КНОПКА*/
 .btn {
   display:inline-block;
   margin-top: auto;
@@ -350,18 +309,15 @@ body{
   transform:translateY(12px);
   transition: all .25s ease;
 }
-
 .product.show .btn {
   opacity:1;
   transform:translateY(0);
 }
-
 .btn:hover {
   transform: translateY(-3px) scale(1.03);
   box-shadow:0 6px 20px rgba(0,150,60,0.35);
 }
-
-/* TAGS */
+/*ТЕГИ*/
 .tag {
   position:absolute;
   bottom:10px;
@@ -374,7 +330,7 @@ body{
   font-weight:700;
 }
 
-/* LABELS / RIBBONS */
+/*ЭТИКЕТКИ ТЕГОВ*/
 .label {
   position:absolute;
   top:12px;
@@ -388,17 +344,13 @@ body{
   opacity:0;
   transition:transform .28s, opacity .28s;
 }
-
 .product.show .label {
   transform:translateY(0) scale(1);
   opacity:1;
 }
-
 .label.novelty { background: #2041fa; }
 .label.hit { background: #ff8c00; }
 .label.sale { background: #ff3b3b; }
-
-/* Small corner ribbon */
 .ribbon {
   position:absolute;
   right:-36px;
@@ -415,8 +367,6 @@ body{
   font-size:12px;
   box-shadow:0 6px 12px rgba(0,0,0,0.08);
 }
-
-/* Hover glow edges */
 .card::after {
   content:'';
   position:absolute;
@@ -426,20 +376,20 @@ body{
   box-shadow:0 0 0 rgba(0,0,0,0);
   transition: box-shadow .28s;
 }
-
 .product:hover .card::after {
   box-shadow:0 12px 40px rgba(15,169,88,0.06);
 }
+/* ======================================================  КАРТОЧКИ КОНЕЦ ============================================================== */
 
 
-/* ===== SERVICES (icons) PROSOFT ===== */
+
+/* ======================================================  СЕРВИСЫ PROSOFT ИКОНКИ НАЧАЛО ============================================================== */
 .services-grid {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
   gap:20px;
   padding:20px 0;
 }
-
 .service {
   background: rgba(255,255,255,0.85);
   backdrop-filter: blur(6px);
@@ -451,29 +401,21 @@ body{
   cursor:pointer;
   position: relative;
   overflow: hidden;
-
-  /* анимация появления */
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 0.6s forwards;
 }
-
 .service:nth-child(1) { animation-delay: 0.1s; }
 .service:nth-child(2) { animation-delay: 0.2s; }
 .service:nth-child(3) { animation-delay: 0.3s; }
 .service:nth-child(4) { animation-delay: 0.4s; }
-
 @keyframes fadeInUp {
   to { opacity:1; transform: translateY(0); }
 }
-
-/* Hover эффект */
 .service:hover {
   transform: translateY(-8px) scale(1.02);
   box-shadow:0 12px 28px rgba(0,150,60,0.18);
 }
-
-/* Иконки */
 .service svg {
   width:48px;
   height:48px;
@@ -481,28 +423,21 @@ body{
   margin-bottom:10px;
   transition: transform .28s ease, fill .28s ease;
 }
-
 .service:hover svg {
   transform: scale(1.2);
   fill: #0C8C48;
 }
-
-/* Заголовок */
 .service-title {
   font-weight:700;
   font-size:15px;
   color: #0C8C48;
   margin-bottom:4px;
 }
-
-/* Описание */
 .service-desc {
   font-size:13px;
   color: #333;
   opacity:0.75;
 }
-
-/* Подсветка при hover через псевдоэлемент */
 .service::before {
   content: "";
   position: absolute;
@@ -512,21 +447,14 @@ body{
   pointer-events:none;
   transition: background .28s ease;
 }
-
 .service:hover::before {
   background: linear-gradient(135deg, rgba(15,169,88,0.12), rgba(255,255,255,0));
 }
+/* ======================================================  СЕРВИСЫ PROSOFT ИКОНКИ КОНЕЦ ============================================================== */
 
 
-/* ========== FILTERS BAR ========== */
-.filters { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom:8px; }
-.filter { background:transparent; border:1px solid rgba(0,0,0,0.06); padding:8px 10px; border-radius:8px; display:flex; gap:8px; align-items:center; }
-.filter select, .filter input { border:0; outline:none; background:transparent; }
 
-/* ========== HITS SLIDER (autoplay optional) ========== */
-.hits { display:flex; gap:12px; overflow-x:auto; padding-bottom:6px; }
-
-/* ========== FOOTER (fixed issues) ========== */
+/* ======================================================  НИЖНЯЯ ПАНЕЛЬ НАЧАЛО ============================================================== */
 footer {
   display:flex;
   gap:28px;
@@ -541,11 +469,12 @@ footer > div { min-width:160px; display:flex; flex-direction:column; gap:8px; }
 footer h4 { margin:0 0 6px; font-size:16px; color:var(--accent); }
 footer a { color:#333; text-decoration:none; font-size:14px; }
 footer a:hover { color:var(--accent-dark); text-decoration:underline; }
-
-/* small utility */
 .center { text-align:center }
+/* ======================================================  НИЖНЯЯ ПАНЕЛЬ КОНЕЦ ============================================================== */
 
-/* ===== САМА КАРТОЧКА ===== */
+
+
+/* ======================================================  6 В РЯД НАЧАЛО ============================================================== */
 .product {
   position: relative;
   width: 250px;
@@ -557,38 +486,29 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
   overflow: hidden;
   transition: 0.25s ease;
 }
-
-/* hover эффект — живой сайт */
 .product:hover {
   transform: translateY(-6px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
-
-/* ===== ПРОДСМЕСТИ ===== */
 .card-media img {
   width: 100%;
   height: 180px;
-  object-fit: cover;  /* НЕ растягивает картинку */
+  object-fit: cover;
   display: block;
 }
-
 .card-body {
   padding: 12px;
 }
-
 .card-body h3 {
   margin: 0 0 6px;
   font-size: 16px;
   font-weight: 700;
 }
-
 .card-body p {
   font-size: 15px;
   font-weight: 600;
   color: var(--accent);
 }
-
-/* ===== КНОПКА Купить ===== */
 .btn {
   background: var(--accent);
   color: #fff;
@@ -600,378 +520,321 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
   width: 100%;
   transition: 0.3s ease;
 }
-
 .btn:hover {
   background: #07773c;
 }
-
-/* Плавный скролл карточек */
 .slider {
   display: flex;
   gap: 16px;
   overflow-x: auto;
-  scroll-behavior: smooth;      /* плавное движение */
+  scroll-behavior: smooth;
   padding-bottom: 20px;
 }
-
 .slider::-webkit-scrollbar {
   height: 6px;
 }
-
 .slider::-webkit-scrollbar-thumb {
   background: rgba(0,0,0,0.2);
   border-radius: 4px;
 }
-/* ===== GRID-КАРТОЧКИ (6 в ряд) ===== */
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* 6 в один ряд */
-  gap: 20px;   /* расстояние между карточками */
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
   padding: 20px;
 }
+/* ======================================================  6 В РЯД КОНЕЦ  ============================================================== */
 
-/* ====== MODAL - FIRMENNY STYLE PROSOFT ====== */
+
+
+
+/* ======================================================  МОДАЛЬНЫЕ КАРТОЧКИ НАЧАЛО ============================================================== */
 .modal {
   position: fixed;
   inset: 0;
   display: none;
   align-items: center;
   justify-content: center;
-  background: rgba(0,0,0,0.35); /* фирменный полупрозрачный зеленый */
+  background: rgba(0,0,0,0.45);
   backdrop-filter: blur(4px);
   z-index: 9999;
   padding: 20px;
 }
-
 .modal.active { display: flex; }
 
+/*ГЛАВНЫЙ БЛОК*/
 .modal-content {
-  position: relative;
-  width: 95%;
-  max-width: 480px;
-  background: #ffffff;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  max-width: 900px;
+  width: 95%;            
+  max-height: 600px;
+  background: #fff;
   border-radius: 16px;
   padding: 24px;
-  box-shadow: 0 20px 60px rgba(10,127,63,0.25); /* мягкая фирменная тень */
+  box-shadow: 0 20px 60px rgba(10,127,63,0.25);
   animation: modalFade .3s ease;
-  transform-origin: top center;
+  overflow: hidden;
 }
-
 @keyframes modalFade {
-  from { opacity: 0; transform: translateY(-15px) scale(0.98); }
+  from { opacity: 0; transform: translateY(-15px) scale(0.97); }
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-.modal-content img {
-  width: 100%;
-  max-height: 240px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 16px;
-  box-shadow: 0 6px 20px rgba(10,127,63,0.1);
-}
-
-#modalTitle {
-  font-size: 22px;
-  font-weight: 800;
-  margin-bottom: 6px;
-  color: var(--accent);
-}
-
-#modalPrice {
-  font-size: 20px;
-  font-weight: 800;
-  margin-bottom: 12px;
-  color: var(--accent-dark);
-}
-
-.modal-desc {
-  color: #555;
-  font-size: 14px;
-  margin-bottom: 12px;
-}
-
-/* ---- ЛИНИЯ ---- */
-.modal-divider {
-  height: 1px;
-  background: rgba(10,127,63,0.15);
-  margin: 12px 0;
-}
-
-/* ---- галлерия ---- */
-.modal-gallery {
-  position: relative;
-  width: 100%;
-  max-height: 280px;
-  margin-bottom: 16px;
+/*ЛЕВАЯ ЧАСТЬ (ГАЛЕРЕЯ)*/
+.modal-left {
+  flex: 1.5;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 14px;
   overflow: hidden;
-  border-radius: 12px;
+  max-height: 100%;
+  position: relative;
 }
-
-.modal-gallery img {
+.modal-left img {
   width: 100%;
-  max-height: 280px;
-  object-fit: cover;
-  border-radius: 12px;
-  transition: opacity .3s ease;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity .3s ease, transform .3s ease;
+  border-radius: 14px;
 }
 
-/* Стрелки */
+/*СТРЕЛКИ*/
 .gallery-nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 36px;
-  height: 36px;
-  background: rgba(15, 169, 88, 0.8);
-  border: none;
-  color: #fff;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
+  background: rgba(15,169,88,0.85);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10;
-  transition: all .25s ease;
 }
-
+.gallery-nav.left { left: 10px; }
+.gallery-nav.right { right: 10px; }
 .gallery-nav:hover {
-  background: rgba(15, 169, 88, 1);
   transform: translateY(-50%) scale(1.1);
 }
 
-.gallery-nav.left { left: 8px; }
-.gallery-nav.right { right: 8px; }
+/*ПРАВАЯ ЧАСТЬ (ИНФО)*/
+.modal-right {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/*КРЕСТИК*/
+.modal-close {
+  position: absolute;
+  top: 1px;       
+  right: 12px;      
+  z-index: 2000;
+  width: 35px;
+  height: 35px;
+  border-radius: 12px;
+  background: rgba(15, 169, 88, 0.15); 
+  border: 1px solid rgba(15, 169, 88, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 37px;
+  color: #0FA958; 
+  cursor: pointer;
+  transition: all .25s ease;
+}
+
+.modal-close:hover {
+  background: rgba(15, 169, 88, 0.3);
+  transform: scale(1.1);
+}
 
 
-/* ---- КНОПКА КУПИТЬ ---- */
+/*ТЕКСТ*/
+#modalTitle {
+  font-size: 24px;
+  font-weight: 800;
+  margin-top: 45px;
+  color: var(--accent);
+}
+#modalPrice {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 8px 0 12px;
+  color: var(--accent-dark);
+}
+
+/*ВКЛАДКИ*/
+.modal-tabs {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+}
+.tab-btn {
+  flex: 1;
+  padding: 10px 0;
+  border-radius: 8px;
+  background: #0FA95820;
+  color: #0FA958;
+  border: 1px solid #0FA95850;
+  cursor: pointer;
+  transition: all .25s ease;
+}
+.tab-btn.active {
+  background: #0FA958;
+  color: #fff;
+  border-color: #0FA958;
+  box-shadow: 0 4px 12px rgba(15, 169, 88, 0.3);
+}
+.tab-content {
+  display: none;
+  margin-top: 8px;
+  font-size: 15px;
+}
+.tab-content.active {
+  display: block;
+}
+
+/*КНОПКИ*/
+.modal-buttons {
+  margin-top: auto;
+  display: flex;
+  gap: 10px;
+}
 .buy-btn {
+  flex: 1;
   background: var(--accent);
   color: #fff;
   border-radius: 10px;
   padding: 12px;
-  width: 100%;
-  font-size: 16px;
-  cursor: pointer;
   border: none;
-  transition: all .25s ease;
+  cursor: pointer;
 }
-
-.modal.active .buy-btn {
-  animation: btnIn .4s ease forwards;
-}
-
-.buy-btn:hover {
-  background: var(--accent-dark);
-  transform: scale(1.05);
-}
-
-/* Кнопка "В избранное" */
 #modalFav {
-  background: #ff4482;   /* фирменный ярко-зеленый цвет Prosoft */
-  color: #fff;                 /* белый текст */
+  flex: 1;
+  background: #ff4482;
+  color: #fff;
   border-radius: 10px;
-  padding: 12px;
-  font-size: 16px;
-  cursor: pointer;
   border: none;
-  opacity: 1 !important;       /* важное, чтобы не перекрывали другие стили */
-  transform: translateY(0) !important;
-  transition: all .25s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#modalFav:hover {
- background: #fc6195; 
-  transform: scale(1.05);
-}
-
-
-@keyframes btnIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ---- КРЕСТИК ---- */
-.modal-close {
-  position: absolute;
-  right: 12px;
-  top: 10px;
-  width: 38px;
-  height: 38px;
-  border-radius: 12px;
-  background: rgba(10,127,63,0.08);
-  border: 1px solid rgba(10,127,63,0.18);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 12px;
   cursor: pointer;
-  font-size: 20px;
-  color: var(--accent-dark);
-  transition: all .2s;
-    z-index: 2000; /* Впереди всех элементов модалки */
 }
-
-.modal-close:hover {
-  background: rgba(10,127,63,0.15);
-  transform: scale(1.08);
-}
-
-/* Блокировка скролла при открытой модалке */
-body.modal-open {
-  overflow: hidden;
-}
+/* ======================================================  МОДАЛЬНЫЕ КАРТОЧКИ КОНЕЦ ============================================================== */
 
 
-/* ==================================================
-   📱 MOBILE — FULL ADAPTIVE FOR PROSOFT (480px-)
-   ================================================== */
+
+/* ======================================================  МОБИЛЬНАЯ ВЕРСИЯ НАЧАЛО ============================================================== */
 @media (max-width: 480px) {
-
-/* -----------------------------------------
-   HEADER (fixed + styled)
------------------------------------------ */
 .header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-
   z-index: 2000 !important;
   background: rgba(255,255,255,0.92);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(0,0,0,0.06);
   padding: 12px 18px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-
   box-shadow: 0 2px 12px rgba(0,0,0,0.04);
 }
-
 body {
-  padding-top: 80px; /* подбирается под высоту твоего header */
+  padding-top: 80px;
 }
-
-/* логотип */
 .logo {
   font-size: 20px;
   font-weight: 800;
   color: var(--accent);
   letter-spacing: 0.4px;
 }
-
-/* левая зона */
 .brand {
   display: flex;
   align-items: center;
   gap: 12px;
 }
-
-/* бургер */
 .burger {
   background: rgba(10,127,63,0.08);
   border: 1px solid rgba(10,127,63,0.15);
   padding: 8px;
   border-radius: 10px;
-
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: .18s ease;
 }
-
 .burger:hover {
   background: rgba(10,127,63,0.15);
   transform: scale(1.05);
 }
-
 .burger svg {
   width: 20px;
   height: 20px;
   fill: var(--accent-dark);
 }
-
-/* правые иконки */
 .icons {
   display: flex;
   gap: 10px;
 }
-
 .icon-wrap {
   width: 44px;
   height: 44px;
   border-radius: 12px;
   background: rgba(10,127,63,0.06);
   border: 1px solid rgba(10,127,63,0.12);
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
   transition: .18s;
 }
-
 .icon-wrap svg {
   width: 20px;
   height: 20px;
   fill: var(--accent);
 }
-
 .icon-wrap:hover {
   background: rgba(10,127,63,0.12);
   transform: translateY(-2px);
 }
-
-
-/* скрыть десктоп навигацию */
 .header nav { display: none !important; }
-
-/* -----------------------------------------
-   SIDEBAR (CATALOG)
------------------------------------------ */
 .sidebar {
   width: 80%;
   max-width: 300px;
   height: 100vh;
   padding: 20px 18px;
-
   position: fixed;
   top: 0;
   left: -100%;
   opacity: 0;
-
   background: #fff;
   border-radius: 0 12px 12px 0;
   box-shadow: 0 0 40px rgba(0,0,0,0.28);
-
   transition: left .35s ease, opacity .25s ease;
   z-index: 3000 !important;
 }
-
 .sidebar.active {
   left: 0;
   opacity: 1;
 }
-
 .sidebar h4 {
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 14px;
   color: var(--accent);
 }
-
 .sidebar a {
   font-size: 15px;
   padding: 10px;
@@ -980,154 +843,112 @@ body {
   border-radius: 8px;
   color: #333;
 }
-
 .sidebar a:hover {
   background: rgba(10,127,63,0.06);
   color: var(--accent-dark);
 }
-
-/* Крестик */
 .close-sidebar {
   position: absolute;
   top: 12px;
   right: 12px;
-
   width: 38px;
   height: 38px;
   border-radius: 10px;
-
   background: rgba(10,127,63,0.08);
   border: 1px solid rgba(10,127,63,0.18);
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
   transition: .2s;
 }
-
 .close-sidebar:hover {
   background: rgba(10,127,63,0.15);
   transform: scale(1.05);
 }
-
-/* фильтры */
-.filter label {
-  font-size: 14px;
-}
-
-#priceValue {
-  font-size: 14px;
-}
-
-#applyFilters {
-  width: 100%;
-  padding: 12px;
-  font-size: 15px;
-  border-radius: 8px;
-}
-
-
-/* -----------------------------------------
-   GLOBAL LAYOUT
------------------------------------------ */
 .container {
   flex-direction: column;
   padding: 12px;
   gap: 18px;
 }
-
 .content {
   width: 100%;
   padding: 0;
 }
-
-
-/* -----------------------------------------
-   SECTIONS
------------------------------------------ */
 .section {
   padding: 14px 12px;
   border-radius: 10px;
 }
-
 .section-title {
   font-size: 18px;
   margin-bottom: 10px;
 }
-
-
-/* -----------------------------------------
-   PRODUCTS GRID (1 column)
------------------------------------------ */
 .products {
   grid-template-columns: 1fr !important;
   gap: 14px;
 }
-
 .card {
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.06);
 }
-
 .card-media img {
   height: 140px;
   object-fit: cover;
 }
-
 .card-body h3 {
   font-size: 14px;
   margin-bottom: 4px;
 }
-
 .card-body p {
   font-size: 12px;
 }
-
 .btn {
   padding: 10px;
   font-size: 13px;
   border-radius: 8px;
   width: 100%;
 }
-
 .label,
 .tag {
   font-size: 11px;
   padding: 4px 6px;
 }
-
-
-/* -----------------------------------------
-   SERVICES GRID
------------------------------------------ */
 .services-grid {
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
-
 .service {
   padding: 12px;
   border-radius: 12px;
   box-shadow: var(--shadow);
   text-align: center;
 }
-
 .service svg {
   width: 34px;
   height: 34px;
   margin-bottom: 6px;
 }
-
 .service div:nth-child(2) {
   font-size: 14px;
   font-weight: 700;
 }
-
 .service div:nth-child(3) {
   font-size: 12px;
   color: var(--muted);
 }
-
-} /* END MEDIA */
+/*МОБИЛЬНАЯ МОДАЛКА ВЕРСТКА*/
+@media (max-width: 768px) {
+  .modal-content {
+    flex-direction: column;
+    max-width: 450px;
+  }
+  .modal-left img {
+    max-height: 260px;
+  }
+  .modal-right {
+    width: 100%;
+  }
+  #modalTitle { margin-top: 20px; }
+}
+}
+/* ======================================================  МОБИЛЬНАЯ ВЕРСИЯ КОНЕЦ ============================================================== */
