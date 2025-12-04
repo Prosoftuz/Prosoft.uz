@@ -887,14 +887,16 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
   .service div:nth-child(2) { font-size: 14px; font-weight: 700; }
   .service div:nth-child(3) { font-size: 12px; color: var(--muted); }
   /* ==== MODAL ==== */
-  .modal-content {
+   .modal-content {
     flex-direction: column !important; /* вертикально */
     max-width: 95%;
     width: 100%;
     padding: 16px;
     gap: 16px;
+    max-height: 90vh; /* Ограничиваем высоту модалки */
+    overflow: hidden; /* Скрываем лишнее, скролл будет в правом блоке */
   }
-  .modal-left {
+ .modal-left {
     width: 100%;
     max-height: 300px;
     display: flex;
@@ -911,10 +913,28 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
   }
   .gallery-nav.left { left: 10px; }
   .gallery-nav.right { right: 10px; }
-  .modal-right { width: 100%; }
+  .modal-right {
+    width: 100%;
+    max-height: 50vh; /* Правый блок скроллимый */
+    overflow-y: auto;
+    padding-right: 4px; /* небольшой отступ для скролла */
+  }
+
+  /* Скролл бар для мобильных */
+  .modal-right::-webkit-scrollbar {
+    width: 6px;
+  }
+  .modal-right::-webkit-scrollbar-thumb {
+    background: rgba(15,169,88,0.6);
+    border-radius: 3px;
+  }
+  .modal-right::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.05);
+    border-radius: 3px;
+  }
   #modalTitle { margin-top: 12px; font-size: 18px; }
   #modalPrice { font-size: 16px; }
-  .tab-btn { padding: 8px 0; font-size: 14px; }
+.tab-btn { padding: 8px 0; font-size: 14px; }
   .modal-specs-table td { font-size: 13px; padding: 4px 0; }
   .modal-desc { font-size: 13px; }
   .modal-buttons .btn { font-size: 14px; padding: 10px; }
