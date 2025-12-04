@@ -577,9 +577,31 @@
                  Хранение: SSD 512 ГБ – 8 ТБ |
                  Графика: AMD Radeon Pro 5300M/5500M/5600M + Intel UHD |
                  Порты: 4× Thunderbolt 3, 3.5 мм аудио |
+                 Батарея: 100 Wh, до ~11 ч работы
+                 Графика: AMD Radeon Pro 5300M/5500M/5600M + Intel UHD |
+                 Порты: 4× Thunderbolt 3, 3.5 мм аудио |
+                 Батарея: 100 Wh, до ~11 ч работы
+                 Хранение: SSD 512 ГБ – 8 ТБ |
+                 Графика: AMD Radeon Pro 5300M/5500M/5600M + Intel UHD |
+                 Порты: 4× Thunderbolt 3, 3.5 мм аудио |
+                 Батарея: 100 Wh, до ~11 ч работы
+                 Графика: AMD Radeon Pro 5300M/5500M/5600M + Intel UHD |
+                 Порты: 4× Thunderbolt 3, 3.5 мм аудио |
                  Батарея: 100 Wh, до ~11 ч работы"
      
      data-desc="MacBook Pro 16 — флагманский ноутбук Apple с большим Retina-экраном, 
+подходит для профессиональной работы: монтаж видео, кодинг, дизайн, 3D и тяжёлые задачи.
+Новая система охлаждения, качественная клавиатура Magic Keyboard, мощная дискретная графика 
+и большой объём памяти делают модель одной из лучших для работы в 2024–2025 году.
+MacBook Pro 16 — флагманский ноутбук Apple с большим Retina-экраном, 
+подходит для профессиональной работы: монтаж видео, кодинг, дизайн, 3D и тяжёлые задачи.
+Новая система охлаждения, качественная клавиатура Magic Keyboard, мощная дискретная графика 
+и большой объём памяти делают модель одной из лучших для работы в 2024–2025 году.
+MacBook Pro 16 — флагманский ноутбук Apple с большим Retina-экраном, 
+подходит для профессиональной работы: монтаж видео, кодинг, дизайн, 3D и тяжёлые задачи.
+Новая система охлаждения, качественная клавиатура Magic Keyboard, мощная дискретная графика 
+и большой объём памяти делают модель одной из лучших для работы в 2024–2025 году.
+MacBook Pro 16 — флагманский ноутбук Apple с большим Retina-экраном, 
 подходит для профессиональной работы: монтаж видео, кодинг, дизайн, 3D и тяжёлые задачи.
 Новая система охлаждения, качественная клавиатура Magic Keyboard, мощная дискретная графика 
 и большой объём памяти делают модель одной из лучших для работы в 2024–2025 году."
@@ -596,7 +618,7 @@
     </div>
 
     <div class="card-body">
-      <h3>MacBook Pro 16 (2019)</h3>
+      <h3>MacBook Pro 16 (2019) 256Гб +SDD</h3>
       <p>Большой экран и профессиональная производительность.</p>
       <div class="card-price">От 7 199 000 сум</div>
       <button class="btn open-modal">Купить</button>
@@ -638,47 +660,56 @@
 </footer>
 
 
-
 <!-- ===== UNIVERSAL PRODUCT MODAL ===== -->
 <div id="productModal" class="modal">
 
   <div class="modal-content">
 
-    <!-- LEFT: GALLERY -->
+    <!-- CLOSE BUTTON -->
+    <button id="modalClose" class="modal-close">&times;</button>
+
+    <!-- LEFT: IMAGE GALLERY -->
     <div class="modal-left">
       <button class="gallery-nav left">❮</button>
-      <img id="modalImage" src="" alt="">
+      <img id="modalImage" src="" alt="Product image">
       <button class="gallery-nav right">❯</button>
     </div>
 
-    <!-- RIGHT: INFO BLOCK -->
+    <!-- RIGHT: PRODUCT INFO -->
     <div class="modal-right">
 
-      <button id="modalClose" class="modal-close">&times;</button>
+      <!-- HEADER: TITLE, PRICE, TABS -->
+      <div class="modal-header">
+        <h2 id="modalTitle">Заголовок товара</h2>
+        <p id="modalPrice">Цена</p>
 
-      <h2 id="modalTitle"></h2>
-      <p id="modalPrice"></p>
-
-      <!-- TAB BUTTONS -->
-      <div class="modal-tabs">
-        <button class="tab-btn active" data-tab="specs">Характеристики</button>
-        <button class="tab-btn" data-tab="desc">Описание</button>
+        <div class="modal-tabs">
+          <button class="tab-btn active" data-tab="specs">Характеристики</button>
+          <button class="tab-btn" data-tab="desc">Описание</button>
+        </div>
       </div>
 
-      <!-- TAB CONTENT -->
-      <div class="tab-content active" id="specsTab"></div>
-      <div class="tab-content" id="descTab"></div>
+      <!-- MAIN CONTENT (SCROLL AREA) -->
+      <div class="modal-right-content">
+        <div id="specsTab" class="tab-content active">
+          <!-- сюда JavaScript будет подставлять характеристики -->
+        </div>
+
+        <div id="descTab" class="tab-content">
+          <!-- сюда JavaScript будет подставлять описание -->
+        </div>
+      </div>
 
       <!-- ACTION BUTTONS -->
       <div class="modal-buttons">
+            <div class="btn">
         <button id="modalBuy" class="btn buy-btn">Купить</button>
         <button id="modalFav" class="btn fav-btn">В избранное</button>
       </div>
+</div>
     </div>
   </div>
 </div>
-
-
 
 <script src="js/script.js"></script>
 </body>

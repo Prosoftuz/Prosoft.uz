@@ -549,6 +549,7 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
 
 
 /* ======================================================  МОДАЛЬНЫЕ КАРТОЧКИ НАЧАЛО ============================================================== */
+/* ===== MODAL BASE ===== */
 .modal {
   position: fixed;
   inset: 0;
@@ -560,29 +561,51 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
   z-index: 9999;
   padding: 20px;
 }
-.modal.active { display: flex; }
 
-/*ГЛАВНЫЙ БЛОК*/
+.modal.active {
+  display: flex;
+}
+
+/* ===== MODAL CONTENT ===== */
 .modal-content {
   display: flex;
   flex-direction: row;
   gap: 24px;
   max-width: 900px;
-  width: 95%;            
-  max-height: 600px;
+  width: 95%;
+  max-height: 70vh;
   background: #fff;
   border-radius: 16px;
   padding: 24px;
   box-shadow: 0 20px 60px rgba(10,127,63,0.25);
-  animation: modalFade .3s ease;
+  position: relative;
   overflow: hidden;
 }
-@keyframes modalFade {
-  from { opacity: 0; transform: translateY(-15px) scale(0.97); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
+
+/* ===== CLOSE BUTTON ===== */
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background: rgba(12, 209, 100, 0.08);
+  border: 1px solid rgba(0, 255, 115, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: #0FA958;
+  cursor: pointer;
+  z-index: 200;
+}
+.modal-close:hover {
+  background: rgba(10,127,63,0.15);
+  transform: scale(1.1);
 }
 
-/*ЛЕВАЯ ЧАСТЬ (ГАЛЕРЕЯ)*/
+/* ===== LEFT BLOCK: IMAGE ===== */
 .modal-left {
   flex: 1.5;
   display: flex;
@@ -590,18 +613,17 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
   justify-content: center;
   border-radius: 14px;
   overflow: hidden;
-  max-height: 100%;
   position: relative;
+  max-height: 500px;
 }
 .modal-left img {
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: contain;
-  transition: opacity .3s ease, transform .3s ease;
   border-radius: 14px;
 }
 
-/*СТРЕЛКИ*/
+/* ===== GALLERY NAV ===== */
 .gallery-nav {
   position: absolute;
   top: 50%;
@@ -621,59 +643,35 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
 }
 .gallery-nav.left { left: 10px; }
 .gallery-nav.right { right: 10px; }
-.gallery-nav:hover {
-  transform: translateY(-50%) scale(1.1);
-}
+.gallery-nav:hover { transform: translateY(-50%) scale(1.1); }
 
-/*ПРАВАЯ ЧАСТЬ (ИНФО)*/
+/* ===== RIGHT BLOCK ===== */
 .modal-right {
   flex: 1;
-  position: relative;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  position: relative;
 }
 
-/*КРЕСТИК*/
-.modal-close {
-  position: absolute;
-  top: 1px;       
-  right: 12px;      
-  z-index: 2000;
-  width: 35px;
-  height: 35px;
-  border-radius: 12px;
-  background: rgba(15, 169, 88, 0.15); 
-  border: 1px solid rgba(15, 169, 88, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 37px;
-  color: #0FA958; 
-  cursor: pointer;
-  transition: all .25s ease;
+/* ===== HEADER ===== */
+.modal-header {
+  flex-shrink: 0;
 }
-
-.modal-close:hover {
-  background: rgba(15, 169, 88, 0.3);
-  transform: scale(1.1);
-}
-
-
-/*ТЕКСТ*/
 #modalTitle {
   font-size: 24px;
   font-weight: 800;
-  margin-top: 45px;
-  color: var(--accent);
+  color: #0FA958;
+  margin: 0;
 }
 #modalPrice {
   font-size: 22px;
   font-weight: 700;
   margin: 8px 0 12px;
-  color: var(--accent-dark);
+  color: #046b39;
 }
 
-/*ВКЛАДКИ*/
+/* ===== TABS ===== */
 .modal-tabs {
   display: flex;
   gap: 10px;
@@ -687,14 +685,36 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
   color: #0FA958;
   border: 1px solid #0FA95850;
   cursor: pointer;
-  transition: all .25s ease;
+  transition: 0.25s ease;
+  font-weight: 600;
 }
 .tab-btn.active {
   background: #0FA958;
   color: #fff;
   border-color: #0FA958;
-  box-shadow: 0 4px 12px rgba(15, 169, 88, 0.3);
+  box-shadow: 0 4px 12px rgba(15,169,88,0.3);
 }
+
+/* ===== SCROLL CONTENT ===== */
+.modal-right-content {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding-right: 8px;
+  padding-bottom: 120px; /* место для кнопок */
+}
+.modal-right-content::-webkit-scrollbar {
+  width: 6px;
+}
+.modal-right-content::-webkit-scrollbar-thumb {
+  background: rgba(15,169,88,0.6);
+  border-radius: 3px;
+}
+.modal-right-content::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.05);
+  border-radius: 3px;
+}
+
+/* ===== TAB CONTENT ===== */
 .tab-content {
   display: none;
   margin-top: 8px;
@@ -704,30 +724,96 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
   display: block;
 }
 
-/*КНОПКИ*/
+
+/* ===== ACTION BUTTONS FIXED ===== */
 .modal-buttons {
-  margin-top: auto;
+  position: absolute;        /* всегда внизу правой колонки */
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
   display: flex;
-  gap: 10px;
+  gap: 12px;
+  padding: 12px 16px;
+  justify-content: flex-end;
+  align-items: center;
+  background: #ffffff;          /* сплошной фон */
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12); /* тень */
+  border-radius: 12px;
+  z-index: 9999;
 }
-.buy-btn {
-  flex: 1;
-  background: var(--accent);
-  color: #fff;
-  border-radius: 10px;
-  padding: 12px;
+
+/* ===== BUTTONS ===== */
+.modal-buttons .btn {
+  padding: 12px 16px;
+  border-radius: 12px;
   border: none;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
 }
-#modalFav {
-  flex: 1;
-  background: #ff4482;
+
+/* BUY BUTTON */
+.modal-buttons .btn .btn.buy-btn {
+   display:flex;
+  background: #0FA958;
   color: #fff;
-  border-radius: 10px;
-  border: none;
-  padding: 12px;
-  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(15,169,88,0.22);
 }
+.modal-buttons .btn .btn.buy-btn:hover {
+  background: #0c8b4a;
+  transform: scale(1.03);
+}
+
+/* FAVORITE BUTTON */
+.modal-buttons .btn.fav-btn {
+  background: #8d1a1a;
+  color: #0FA958;
+  border: 1px solid rgba(15,169,88,0.25);
+}
+.modal-buttons .btn.fav-btn:hover {
+  background: #00ff62;
+  transform: scale(1.03);
+}
+
+
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .modal-content {
+    flex-direction: column;
+    max-width: 95%;
+    max-height: 90vh;
+    padding: 16px;
+  }
+  .modal-left {
+    width: 100%;
+    max-height: 260px;
+  }
+  .modal-left img {
+    max-height: 260px;
+  }
+  .modal-right-content {
+    max-height: calc(90vh - 260px - 140px);
+    overflow-y: auto;
+    padding-bottom: 140px;
+  }
+  .modal-buttons {
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    gap: 10px;
+    padding: 10px;
+  }
+  .modal-buttons .btn {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
 /* ======================================================  МОДАЛЬНЫЕ КАРТОЧКИ КОНЕЦ ============================================================== */
 
 
@@ -886,132 +972,147 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
   .service svg { width: 34px; height: 34px; margin-bottom: 6px; }
   .service div:nth-child(2) { font-size: 14px; font-weight: 700; }
   .service div:nth-child(3) { font-size: 12px; color: var(--muted); }
-
-
+  
   /* ==== MODAL ==== */
+ /* ===== MOBILE MODAL LAYOUT ===== */
 .modal-content {
-    flex-direction: column;
-    max-width: 95%;
-    width: 100%;
-    max-height: 90vh; /* Ограничиваем высоту модалки */
-    padding: 16px;
-    gap: 12px;
-    display: flex;
-    background: #fff;
-    border-radius: 16px;
-    overflow: hidden; /* скролл будет в контенте */
-    position: relative;
-  }
+  flex-direction: column !important; /* вертикально */
+  max-width: 95%;
+  width: 100%;
+  padding: 16px;
+  gap: 16px;
+  max-height: 90vh;      /* Ограничиваем высоту всей модалки */
+  position: relative;    /* Чтобы крестик позиционировался относительно модалки */
+  border-radius: 16px;
+  background: #fff;
+  overflow: hidden;      /* Скролл будет только в правом блоке */
+}
 
-    .modal-close {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    z-index: 2000;
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-    background: rgba(12,209,100,0.08);
-    border: 1px solid rgba(0,255,115,0.18);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    color: var(--accent);
-    cursor: pointer;
-  }
- .modal-left {
-    width: 100%;
-    flex: none;
-    max-height: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    border-radius: 12px;
-    position: relative;
-  }
-  .modal-left img {
-    width: 100%;
-    height: auto;
-    max-height: 250px;
-    object-fit: contain;
-    display: block;
-  }
-  .gallery-nav.left { left: 8px; }
-  .gallery-nav.right { right: 8px; }
-   .modal-right {
-    width: 100%;
-    flex: 1;
-    overflow-y: auto; /* только контент скроллится */
-    padding-right: 4px;
-    margin-top: 12px;
-  }
+/* ===== ЛЕВАЯ ЧАСТЬ: КАРТИНКА ===== */
+.modal-left {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* чтобы стрелки были поверх картинки */
+  max-height: 300px;
+}
 
-   /* Заголовок и цена фиксированы */
-  #modalTitle {
-    font-size: 18px;
-    margin-bottom: 4px;
-    position: sticky;
-    top: 0;
-    background: #fff;
-    z-index: 100;
-    padding-top: 4px;
-  }
+.modal-left img {
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 12px;
+  display: block;
+}
 
-  #modalPrice {
-    font-size: 16px;
-    margin-bottom: 8px;
-    position: sticky;
-    top: 28px;
-    background: #fff;
-    z-index: 100;
-    padding-top: 4px;
-  }
+/* Стрелки галереи */
+.gallery-nav.left { left: 10px; }
+.gallery-nav.right { right: 10px; }
 
-  /* Вкладки фиксированы */
-  .modal-tabs {
-    display: flex;
-    gap: 8px;
-    position: sticky;
-    top: 56px;
-    background: #fff;
-    z-index: 100;
-    padding-bottom: 4px;
-  }
+.gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(15,169,88,0.85);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  transition: all .25s ease;
+}
 
-  .tab-btn {
-    flex: 1;
-    padding: 8px 0;
-    font-size: 14px;
-  }
+.gallery-nav:hover {
+  transform: translateY(-50%) scale(1.1);
+}
 
-  .tab-content {
-    display: block;
-    font-size: 13px;
-    line-height: 1.4;
-  }
+/* ===== ПРАВЫЙ БЛОК: ХАРАКТЕРИСТИКИ И ОПИСАНИЕ ===== */
+.modal-right {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
-  /* Таблицы характеристик */
-  .modal-specs-table td {
-    font-size: 13px;
-    padding: 4px 0;
-  }
+/* Заголовок и вкладки остаются статичными */
+.modal-header {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 5;
+  padding-bottom: 8px;
+}
 
-  .modal-desc {
-    font-size: 13px;
-  }
+/* Контент с прокруткой */
+.modal-right-content {
+  max-height: 50vh; /* Скроллимый блок */
+  overflow-y: auto;
+  padding-right: 6px; /* отступ для скролла */
+}
 
-  .modal-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 12px;
-  }
+/* Скроллбар для мобильных */
+.modal-right-content::-webkit-scrollbar {
+  width: 6px;
+}
+.modal-right-content::-webkit-scrollbar-thumb {
+  background: rgba(15,169,88,0.6);
+  border-radius: 3px;
+}
+.modal-right-content::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.05);
+  border-radius: 3px;
+}
 
-  .modal-buttons .btn {
-    font-size: 14px;
-    padding: 10px;
+/* Название и цена */
+#modalTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+#modalPrice {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--accent-dark);
+  margin-bottom: 8px;
+}
+
+/* Вкладки */
+.tab-btn {
+  padding: 8px 0;
+  font-size: 14px;
+}
+
+/* Табличка характеристик */
+.modal-specs-table td {
+  font-size: 13px;
+  padding: 4px 0;
+}
+
+/* Описание */
+.modal-desc {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* Кнопки */
+.modal-buttons .btn {
+  font-size: 14px;
+  padding: 10px;
+  width: 100%;
+  margin-top: 8px;
+}
+  .modal-close {
+    top: 8px;
+    right: 8px;
   }
 }
 /* ======================================================  МОБИЛЬНАЯ ВЕРСИЯ КОНЕЦ ============================================================== */
