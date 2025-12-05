@@ -218,7 +218,6 @@ body{
   gap: 20px;
   padding: 20px;
 }
-
 /*КАРТОЧКА*/
 .product {
   position: relative;
@@ -292,7 +291,6 @@ body{
   font-weight:800;
   color:#0FA958;
 }
-
 /*КНОПКА*/
 .btn {
   display:inline-block;
@@ -329,7 +327,6 @@ body{
   color:#222;
   font-weight:700;
 }
-
 /*ЭТИКЕТКИ ТЕГОВ*/
 .label {
   position:absolute;
@@ -348,9 +345,9 @@ body{
   transform:translateY(0) scale(1);
   opacity:1;
 }
-.label.novelty { background: #2041fa; }
-.label.hit { background: #ff8c00; }
-.label.sale { background: #ff3b3b; }
+                                                           .label.novelty { background: #2041fa; } /*НОВИНКА*/
+                                                           .label.hit { background: #ff8c00; } /*ХИТ ПРОДАЖ*/
+                                                           .label.sale { background: #ff3b3b; } /*СКИДКА*/
 .ribbon {
   position:absolute;
   right:-36px;
@@ -560,17 +557,15 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
   z-index: 9999;
   padding: 20px;
 }
-
 .modal.active {
   display: flex;
 }
-
-/* ===== MODAL CONTENT ===== */
+/*MODAL CONTENT*/
 .modal-content {
   display: flex;
   flex-direction: row;
   gap: 24px;
-  max-width: 900px;
+  max-width: 1250px;
   width: 95%;
   max-height: 70vh;
   background: #fff;
@@ -580,8 +575,7 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
   position: relative;
   overflow: hidden;
 }
-
-/* ===== CLOSE BUTTON ===== */
+/*CLOSE BUTTON*/
 .modal-close {
   position: absolute;
   top: 8px;
@@ -603,8 +597,7 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
   background: rgba(10,127,63,0.15);
   transform: scale(1.1);
 }
-
-/* ===== LEFT BLOCK: IMAGE ===== */
+/*LEFT BLOCK:IMAGE*/
 .modal-left {
   flex: 1.5;
   position: relative;
@@ -614,14 +607,12 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
   justify-content: center; /* центр по вертикали */
   padding-bottom: 70px; /* место для кнопок */
 }
-
 .modal-left img {
   max-width: 100%; /* ограничиваем ширину, чтобы не выходила за блок */
   height: auto;
   border-radius: 14px;
 }
-
-/* Кнопки по ширине блока */
+/*КНОПКИ КУПИТЬ И ИЗБРАННОЕ*/
 .modal-left-buttons {
   position: absolute;
   left: 0;
@@ -633,7 +624,6 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
   justify-content: space-between; /* кнопки по краям */
   box-sizing: border-box; /* учитываем паддинги */
 }
-
 .btn-left {
   flex: 1; /* равная ширина кнопок */
   text-align: center;
@@ -645,7 +635,6 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
   border: none;
   transition: 0.25s;
 }
-
 .btn-left-buy {
   background: #0FA958;
   color: #fff;
@@ -654,7 +643,6 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
 .btn-left-buy:hover {
   background: #0cc86a;
 }
-
 .btn-left-fav {
   background: #fff;
   color: #0FA958;
@@ -663,8 +651,7 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
 .btn-left-fav:hover {
   background: #0FA95810;
 }
-
-/* ===== GALLERY NAV ===== */
+/*GALLERY NAV*/
 .gallery-nav {
   position: absolute;
   top: 50%;
@@ -685,8 +672,7 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
 .gallery-nav.left { left: 10px; }
 .gallery-nav.right { right: 10px; }
 .gallery-nav:hover { transform: translateY(-50%) scale(1.1); }
-
-/* ===== RIGHT BLOCK ===== */
+/*RIGHT BLOCK*/
 .modal-right {
   flex: 1;
   display: flex;
@@ -694,8 +680,7 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
   overflow: hidden;
   position: relative;
 }
-
-/* ===== HEADER ===== */
+/*HEADER*/
 .modal-header {
   flex-shrink: 0;
 }
@@ -711,11 +696,10 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
   margin: 8px 0 12px;
   color: #046b39;
 }
-
-/* ===== TABS ===== */
+/*ВКЛАДКИ*/
 .modal-tabs {
   display: flex;
-  gap: 10px;
+  gap: 15px;
   margin: 10px 0;
 }
 .tab-btn {
@@ -735,8 +719,7 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
   border-color: #0FA958;
   box-shadow: 0 4px 12px rgba(15,169,88,0.3);
 }
-
-/* ===== SCROLL CONTENT ===== */
+/*SCROLL CONTENT*/
 .modal-right-content {
   flex: 1 1 auto;
   overflow-y: auto;
@@ -754,8 +737,7 @@ footer a:hover { color:var(--accent-dark); text-decoration:underline; }
   background: rgba(0,0,0,0.05);
   border-radius: 3px;
 }
-
-/* ===== TAB CONTENT ===== */
+/*СОДЕРЖИМОЕ ВКЛАДОК*/
 .tab-content {
   display: none;
   margin-top: 8px;

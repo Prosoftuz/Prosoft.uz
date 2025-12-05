@@ -1,5 +1,3 @@
-/* ===== keep existing observers and tilt, plus new UI behaviors ===== */
-
 /* Wait for DOM ready to avoid early queries */
 document.addEventListener('DOMContentLoaded', function() {
   const products = document.querySelectorAll('.product');
@@ -104,27 +102,21 @@ document.addEventListener('DOMContentLoaded', function() {
 // ===============================
 //   MODAL WITH GALLERY + INFO RIGHT
 // ===============================
-
 // элементы модалки
 const modal = document.getElementById("productModal");
 const modalImg = document.getElementById("modalImage");
 const modalTitle = document.getElementById("modalTitle");
 const modalPrice = document.getElementById("modalPrice");
 const modalClose = document.getElementById("modalClose");
-
 // вкладки
 const tabDesc = document.getElementById("descTab");
 const tabSpecs = document.getElementById("specsTab");
-
 // стрелки галереи
 const prevBtn = document.querySelector(".gallery-nav.left");
 const nextBtn = document.querySelector(".gallery-nav.right");
-
 // Галерея
 let gallery = [];
 let galleryIndex = 0;
-
-
 // ====================
 // ОТКРЫТИЕ МОДАЛКИ
 // ====================
@@ -156,23 +148,17 @@ function openModal(card) {
   modal.classList.add("active");
   document.body.style.overflow = "hidden";
 }
-
-
 // ====================
 // СПЕЦИФИКАЦИИ
 // ====================
 function buildSpecs(str) {
   if (!str.includes(":")) return "Нет характеристик";
-
   const rows = str.split("|").map(line => {
     const [key, val] = line.split(":");
     return `<tr><td>${key.trim()}</td><td>${val.trim()}</td></tr>`;
   }).join("");
-
   return `<table class="modal-specs-table">${rows}</table>`;
 }
-
-
 // ====================
 // ПЕРЕКЛЮЧЕНИЕ КАРТИНОК
 // ====================
@@ -185,21 +171,16 @@ function showImage() {
         setTimeout(() => modalImg.style.transform = "scale(1)", 150);
     }, 150);
 }
-
-
 prevBtn.addEventListener("click", () => {
   if (!gallery.length) return;
   galleryIndex = (galleryIndex - 1 + gallery.length) % gallery.length;
   showImage();
 });
-
 nextBtn.addEventListener("click", () => {
   if (!gallery.length) return;
   galleryIndex = (galleryIndex + 1) % gallery.length;
   showImage();
 });
-
-
 // ====================
 // ОТКРЫТИЕ ПО КАРТОЧКЕ
 // ====================
@@ -212,8 +193,6 @@ document.addEventListener("click", (e) => {
 
   openModal(card);
 });
-
-
 // ====================
 // ТАБЫ
 // ====================
@@ -230,9 +209,6 @@ document.addEventListener("click", function (e) {
     document.getElementById(tab + "Tab").classList.add("active");
   }
 });
-
-
-
 // ====================
 // ЗАКРЫТИЕ
 // ====================
@@ -241,23 +217,17 @@ function closeModal() {
   modal.classList.remove("active");
   document.body.style.overflow = "";
 }
-
 modalClose.addEventListener("click", closeModal);
-
 modal.addEventListener("click", (e) => {
   if (e.target === modal) closeModal();
 });
-
-
 // ============ SIDEBAR КНОПКА ==============
 const sidebar = document.getElementById('sidebar');
 const toggleBtn = document.getElementById('sidebarToggle');
 const closeSidebar = document.getElementById('closeSidebar');
-
 toggleBtn.addEventListener('click', () => {
   sidebar.classList.add('active');
 });
-
 closeSidebar.addEventListener('click', () => {
   sidebar.classList.remove('active');
 });
