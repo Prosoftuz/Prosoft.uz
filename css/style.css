@@ -200,6 +200,65 @@ body{
 .section .bg-layer { position:absolute; inset:0; z-index:0; opacity:.06; background-position:center; background-size:cover; pointer-events:none; transform:translateY(0); transition:transform .6s ease; }
 /* ======================================================  ЗАГОЛОВОК КОНЕЦ ============================================================== */
 
+/* Запрещаем горизонтальный скролл */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Контейнер баннера */
+.banner-marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 20px 10px;
+  background: linear-gradient(to right, #0a7f3f10, #ffffff00, #0a7f3f10);
+  border-radius: 20px;
+}
+
+/* Лента баннеров */
+.banner-track {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  flex-wrap: nowrap;
+  animation: marquee 60s linear infinite;
+}
+
+/* Картинки баннеров */
+.banner-track img {
+  height: 250px;
+  width: auto;
+  flex-shrink: 0;
+  display: block;
+  max-width: 100%;
+  border-radius: 16px;
+
+  /* Тени и glow */
+  box-shadow: 0 6px 25px rgba(0, 127, 63, 0.25);
+  filter: drop-shadow(0 0 12px #0a7f3f50);
+  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover эффект */
+.banner-track img:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 20px #0a7f3f80);
+  box-shadow: 0 10px 30px rgba(0, 127, 63, 0.35);
+}
+
+/* Анимация ленты */
+@keyframes marquee {
+  0% { transform: translateX(102%); }
+  100% { transform: translateX(-240%); }
+}
+
+/* Мобильная адаптация */
+@media (max-width: 600px) {
+  .banner-track img {
+    height: 160px;
+    filter: drop-shadow(0 0 8px #0a7f3f50);
+  }
+}
 
 
 /* ======================================================  КАРТОЧКИ НАЧАЛО ============================================================== */
